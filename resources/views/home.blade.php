@@ -13,33 +13,17 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle lists" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Bankaccounts
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Create A New Bankaccount</a>
-                                <a class="dropdown-item" href="#">Manage Bankaccounts</a>
-                            </div>
-                        </div>
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle lists" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Groups
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Create A New Group</a>
-                                <a class="dropdown-item" href="#">Manage Groups</a>
-                            </div>
-                        </div>
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle lists" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Payment Requests
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Create A Request</a>
-                                <a class="dropdown-item" href="#">Manage Requests</a>
-                            </div>
+                    <div class="links text-center">
+                        <a href="">Create Account</a>
+                        <a href="">Create Request</a>
+                        <a href="">Create Group</a>
+                        <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Overview
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#">My Accounts</a>
+                            <a class="dropdown-item" href="#">My Requests</a>
+                            <a class="dropdown-item" href="#">My Groups</a>
                         </div>
                     </div>
                 </div>
