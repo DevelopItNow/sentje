@@ -14,16 +14,16 @@
                         </div>
                     @endif
                     <div class="links text-center">
-                        <a href="">Create Account</a>
-                        <a href="">Create Request</a>
-                        <a href="">Create Group</a>
+                        <a href="">{{__('dashboard.account')}}</a>
+                        <a href="">{{__('dashboard.request')}}</a>
+                        <a href="">{{__('dashboard.group')}}</a>
                         <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Overview
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">My Accounts</a>
-                            <a class="dropdown-item" href="#">My Requests</a>
-                            <a class="dropdown-item" href="#">My Groups</a>
+                            <a class="dropdown-item" href="#">{{__('dashboard.accounts')}}</a>
+                            <a class="dropdown-item" href="#">{{__('dashboard.requests')}}</a>
+                            <a class="dropdown-item" href="#">{{__('dashboard.groups')}}</a>
                         </div>
                     </div>
                 </div>
