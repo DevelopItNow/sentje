@@ -43,6 +43,7 @@
 
             $bankAccount = new BankAccount;
             $bankAccount->name = encrypt($request->input('name'));
+            $bankAccount->user_id = auth()->user()->id;;
             $bankAccount->account_number = encrypt($request->input('account_number'));
 
             $bankAccount->save();
