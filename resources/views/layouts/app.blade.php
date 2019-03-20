@@ -71,8 +71,8 @@
                                     {{__('header.language')}} <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item">{{__('header.dutch')}}</a>
-                                    <a class="dropdown-item">{{__('header.english')}}</a>
+                                    <a class="dropdown-item" href="lang/nl">{{__('header.dutch')}}</a>
+                                    <a class="dropdown-item" href="lang/en">{{__('header.english')}}</a>
                                 </div>
                             </div>
                         @endguest
