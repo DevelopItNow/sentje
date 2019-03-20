@@ -14,7 +14,8 @@
          */
         public function index()
         {
-            //
+            $bankaccounts = BankAccount::orderBy('id', 'ASC')->where('user_id', '=', auth()->user()->id)->paginate(10);
+            return view('accounts.index', ['bankaccounts' => $bankaccounts]);
         }
 
         /**
@@ -43,7 +44,7 @@
 
             $bankAccount = new BankAccount;
             $bankAccount->name = encrypt($request->input('name'));
-            $bankAccount->user_id = auth()->user()->id;;
+            $bankAccount->user_id = auth()->user()->id;
             $bankAccount->account_number = encrypt($request->input('account_number'));
 
             $bankAccount->save();
