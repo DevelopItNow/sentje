@@ -20,7 +20,7 @@ return [
     'password' => 'Wachtwoord',
     'confirmpassword' => 'Bevestig Wachtwoord',
     'login' => 'Inloggen',
-    'login' => 'Uitloggen',
+    'logout' => 'Uitloggen',
     'sendlink' => 'Stuur Link',
     'remember' => 'Herinner Mij',
     'forgot' => 'Wachtwoord Vergeten?',

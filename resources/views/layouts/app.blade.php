@@ -51,7 +51,7 @@
                             @endif
                         @else
                             <li class="nav-item">
-                                <a href="{{route('home')}}" class="nav-link">Dashboard</a>
+                                <a href="{{route('home')}}" class="nav-link">{{__('dashboard.dashboard')}}</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

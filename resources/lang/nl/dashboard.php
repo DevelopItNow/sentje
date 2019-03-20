@@ -20,5 +20,6 @@ return [
     'accounts' => 'Mijn Rekeningen',
     'requests' => 'Mijn Verzoeken',
     'groups' => 'Mijn Groepen',
+    'dashboard' => 'Overzicht',
 
 ];

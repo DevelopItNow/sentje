@@ -10,5 +10,6 @@ return [
     'accounts' => 'My Accounts',
     'requests' => 'My Requests',
     'groups' => 'My Groups',
+    'dashboard' => 'Dashboard',
 
 ];

@@ -20,7 +20,7 @@ return [
     'password' => 'Password',
     'confirmpassword' => 'Confirm Password',
     'login' => 'Login',
-    'login' => 'Logout',
+    'logout' => 'Logout',
     'sendlink' => 'Send Link',
     'remember' => 'Remember Me',
     'forgot' => 'Forgot Your Password?',
