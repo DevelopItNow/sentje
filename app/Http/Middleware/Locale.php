@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class Language
+class Locale
 {
     /**
      * Handle an incoming request.
@@ -15,9 +15,10 @@ class Language
      */
     public function handle($request, Closure $next)
     {
-        if (Session::has('applocale') && array_key_exists(\Session::get('applocale'), \Config::get('languages'))) {
-            App::setLocale(Session::get('applocale'));
+        if (\Session::has('language')) {
+            \App::setLocale(\Session::get('language'));
         }
+
         return $next($request);
     }
 }

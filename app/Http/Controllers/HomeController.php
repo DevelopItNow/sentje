@@ -28,7 +28,7 @@ class HomeController extends Controller
 
     public function setLocale($locale)
     {
-        \Session::put('applocale', $locale);
+        \Session::put('language', $locale);
         return redirect()->back();
     }
 }
