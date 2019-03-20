@@ -19,6 +19,4 @@
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('lang/{locale}', 'LocalController@setLocale');
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('lang/{locale}', 'HomeController@setLocale');
 Route::resource('/account', 'BankAccountController');
