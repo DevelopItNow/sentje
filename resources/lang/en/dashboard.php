@@ -5,7 +5,7 @@ return [
 
     'account' => 'Create Account',
     'request' => 'Create Request',
-    'contact' => 'Create Contact',
+    'contact' => 'Contacts',
     'group' => 'Create Group',
     'overview' => 'Overview',
     'accounts' => 'My Accounts',

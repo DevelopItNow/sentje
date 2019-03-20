@@ -13,7 +13,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        return view('contacts.index');
     }
 
     /**
@@ -24,6 +24,23 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'email' => 'required|email',
+        ]);
+
+        $user = \App\User::where('email', $request->input('email'))->first();
+
+        if(!is_null($user)){
+            $contact = new \App\Contact;
+            $contact->user_id = auth()->user()->id;
+            $contact->contact_id = $user->id;
+
+            $contact->save();
+
+            return redirect('/home')->with('success', __('contact.contact_added'));
+        }
+        else{
+            return redirect('/contacts')->with('error', __('contact.contact_error'));
+        }
     }
 }

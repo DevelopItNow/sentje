@@ -1,8 +1,8 @@
 <div class="links text-center">
 	<a href="{{route('account.create')}}">{{__('dashboard.account')}}</a>
 	<a href="">{{__('dashboard.request')}}</a>
-	<a href="">{{__('dashboard.contact')}}</a>
 	<a href="">{{__('dashboard.group')}}</a>
+	<a href="{{route('contacts.index')}}">{{__('dashboard.contact')}}</a>
 	<a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
 	   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		{{__('dashboard.overview')}}
