@@ -15,6 +15,7 @@ return [
 
     'account' => 'Account Maken',
     'request' => 'Verzoek Maken',
+    'contact' => 'Contact Maken',
     'group' => 'Groep Maken',
     'overview' => 'Overzicht',
     'accounts' => 'Mijn Rekeningen',

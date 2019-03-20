@@ -32,4 +32,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\BankAccount');
     }
+
+    public function contacts()
+    {
+        return $this->hasManyThrough('App\User', '\App\User');
+    }
 }
