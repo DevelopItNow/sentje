@@ -27,11 +27,10 @@
 								<tr>
 									<td><a href="/account/{{$account->id}}">{{decrypt($account->name)}}</a></td>
 									<td>{{decrypt($account->account_number)}}</td>
-									<td>{{$account->created_at}}</td>
+									<td>{{date('d-m-Y', strtotime($account->created_at))}}</td>
 									<td>
 										<a href="/account/{{$account->id}}/edit" class="settings" title="Settings"
-											   data-toggle="tooltip"><i
-														class="fa fa-wrench"></i></a>
+										   data-toggle="tooltip">{{__('account.edit')}}</a>
 									</td>
 								</tr>
 							@endforeach

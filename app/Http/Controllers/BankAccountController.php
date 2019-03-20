@@ -49,7 +49,7 @@
 
             $bankAccount->save();
 
-            return redirect('/home')->with('success', 'Account added');
+            return redirect('/home')->with('success', __('account.account_added'));
         }
 
         /**
@@ -66,34 +66,82 @@
         /**
          * Show the form for editing the specified resource.
          *
-         * @param  \App\BankAccount $bankAccount
+         * @param BankAccount $account
          * @return \Illuminate\Http\Response
          */
-        public function edit(BankAccount $bankAccount)
+        public function edit($id)
         {
-            //
+
+            $account = BankAccount::find($id);
+
+            if ($account == null) {
+                return redirect('/account')->with('error', __('error.unauthorized_page'));
+            }
+
+            if ($account->user_id != auth()->user()->id) {
+                return redirect('/account')->with('error', __('error.unauthorized_page'));
+            }
+
+            return view('accounts.edit')->with('account', $account);
         }
 
         /**
          * Update the specified resource in storage.
          *
          * @param  \Illuminate\Http\Request $request
-         * @param  \App\BankAccount $bankAccount
+         * @param $id
          * @return \Illuminate\Http\Response
+         * @throws \Illuminate\Validation\ValidationException
          */
-        public function update(Request $request, BankAccount $bankAccount)
+        public function update(Request $request, $id)
         {
-            //
+            $this->validate($request, [
+                'name' => 'required|string',
+                'account_number' => 'required|string|iban',
+            ]);
+
+            $bankAccount = BankAccount::find($id);
+
+            if ($bankAccount == null) {
+                return redirect('/account')->with('error', __('error.unauthorized_page'));
+            }
+
+            if ($bankAccount->user_id != auth()->user()->id) {
+                return redirect('/account')->with('error', __('error.unauthorized_page'));
+            }
+
+            $bankAccount->name = encrypt($request->input('name'));
+            $bankAccount->user_id = auth()->user()->id;
+            $bankAccount->account_number = encrypt($request->input('account_number'));
+
+            $bankAccount->save();
+
+            return redirect('/account')->with('success', __('account.account_changed'));
+
         }
 
         /**
          * Remove the specified resource from storage.
          *
-         * @param  \App\BankAccount $bankAccount
+         * @param $id
          * @return \Illuminate\Http\Response
          */
-        public function destroy(BankAccount $bankAccount)
+        public function destroy($id)
         {
-            //
+
+            $bankAccount = BankAccount::find($id);
+
+            if ($bankAccount == null) {
+                return redirect('/account')->with('error', __('error.unauthorized_page'));
+            }
+
+            if ($bankAccount->user_id != auth()->user()->id) {
+                return redirect('/account')->with('error', __('error.unauthorized_page'));
+            }
+
+            $bankAccount->delete();
+            return redirect('/account')->with('success', __('account.account_deleted'));
+
+
         }
     }

@@ -31,5 +31,6 @@ return [
     'proceed' => 'Bekijk uw emailadres voor de verificatielink voordat u doorgaat.',
     'notreceived' => 'Als u de email niet ontvangen heeft.',
     'clickhere' => 'klik hier om een nieuwe link te ontvangen',
+    'close' => 'Sluit',
 
 ];

@@ -31,5 +31,6 @@ return [
     'proceed' => 'Before proceeding, please check your email for a verification link.',
     'notreceived' => 'If you did not receive the email',
     'clickhere' => 'click here to request another',
+    'close' => 'Close',
 
 ];
