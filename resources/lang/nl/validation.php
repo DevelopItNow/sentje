@@ -158,7 +158,7 @@ return [
         'minute' => 'minuut',
         'mobile' => 'mobiel',
         'month' => 'maand',
-        'name' => 'naam',
+        'name' => 'Naam',
         'password' => 'wachtwoord',
         'password_confirmation' => 'wachtwoordbevestiging',
         'phone' => 'telefoonnummer',
@@ -176,6 +176,6 @@ return [
         'start_time' => 'start tijd',
         'end_time' => 'eind tijd',
         'price' => 'prijs',
-        'event_name' => 'evenementnaam'
+        'account_number' => 'Rekeningnummer'
     ],
 ];

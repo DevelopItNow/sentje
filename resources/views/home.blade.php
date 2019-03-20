@@ -19,7 +19,7 @@
 							<a href="">{{__('dashboard.group')}}</a>
 							<a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
 							   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Overview
+								{{__('dashboard.overview')}}
 							</a>
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 								<a class="dropdown-item" href="#">{{__('dashboard.accounts')}}</a>
