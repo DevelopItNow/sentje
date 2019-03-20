@@ -8,6 +8,7 @@
 
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/front.css') }}" rel="stylesheet">
+        <script src="{{ asset('js/app.js') }}" defer></script>
 
         <!-- Styles -->
         <style>
@@ -51,22 +52,28 @@
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}">{{__('auth.login')}}</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a href="{{ route('register') }}">{{__('auth.register')}}</a>
                         @endif
                     @endauth
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonLocal" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{__('header.language')}}
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="lang/nl">{{__('header.dutch')}}</a>
+                                <a class="dropdown-item" href= "lang/en">{{__('header.english')}}</a>
+                            </div>
                 </div>
             @endif
-
             <div class="content">
                 <div class="title m-b-md">
                     Tikkie Jij Bent Hem
                 </div>
 
                 <div class="links">
-                    <a href="{{ route('register') }}"><button class="btn btn-success register">Create An Account!</button></a>
+                    <a href="{{ route('register') }}"><button class="btn btn-success register">{{__('home.account')}}</button></a>
                 </div>
             </div>
         </div>

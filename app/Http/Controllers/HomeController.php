@@ -26,9 +26,4 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function setLocale($locale)
-    {
-        \Session::put('language', $locale);
-        return redirect()->back();
-    }
 }
