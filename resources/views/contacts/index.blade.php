@@ -22,6 +22,30 @@
                                     {!! Form::close() !!}
                                 </span>
                             </div>
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                <tr>
+                                    <th>{{__('account.name')}}</th>
+                                    <th>{{__('account.action')}}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($contacts as $contact)
+                                    <tr>
+                                        <td>{{$contact->name}}</td>
+                                        <td>
+                                            {!!Form::open(['action' => ['ContactController@destroy', $contact->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
+                                            {{Form::hidden('_method', 'DELETE')}}
+                                            {{Form::submit(__('contact.delete_contact'), ['class' => 'btn btn-danger btn-block'])}}
+                                            {!!Form::close()!!}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                <tr>
+                                    <td colspan="5">{{$contacts->links()}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
                     </div>
                 </div>
             </div>
