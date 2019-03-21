@@ -3,7 +3,12 @@
     namespace App\Http\Controllers;
 
     use App\BankAccount;
+    use GuzzleHttp\Exception\ClientException;
     use Illuminate\Http\Request;
+    use League\Flysystem\Filesystem;
+    use Spatie\Dropbox\Client;
+    use Spatie\Dropbox\Exceptions\BadRequest;
+    use Spatie\FlysystemDropbox\DropboxAdapter;
 
     class BankAccountController extends Controller
     {
@@ -142,6 +147,38 @@
             $bankAccount->delete();
             return redirect('/account')->with('success', __('account.account_deleted'));
 
+
+        }
+
+        /**
+         * Export all the accounts to a Dropbox account
+         *
+         * @return \Illuminate\Http\RedirectResponse
+         */
+        public function exportAccount()
+        {
+            // Exporting the account values
+            $client = new Client(env("DROPBOX_TOKEN"));
+            try {
+                $accounts = BankAccount::orderBy('id', 'ASC')->where('user_id', '=', auth()->user()->id)->get();
+                $listAccounts = array();
+
+                foreach ($accounts as $account) {
+                    array_push($listAccounts,
+                        array(
+                            'name' => decrypt($account->name),
+                            'number' => decrypt($account->account_number),
+                            'created_at' => date('d-m-Y - H:i:s', strtotime($account->created_at))
+                        ));
+                }
+                $client->upload('accounts '.date("d-m-Y H i s").'.json', json_encode($listAccounts));
+
+                // Redirect to account page
+                return redirect('account')->with('success', __('account.export_success'));
+            } catch (BadRequest $exception) {
+                return redirect('account')->with('error', __('account.export_failed'));
+
+            }
 
         }
     }

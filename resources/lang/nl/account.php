@@ -16,4 +16,8 @@
         'account_added' => 'Account is toegevoegd',
         'account_changed' => 'Account is gewijzigd',
         'account_deleted' => 'Account is verwijderd',
+        'account_export' => 'Accounts exporteren',
+        'export_success' => 'Exporteren gelukt',
+        'export_failed' => 'Exporteren mislukt, heb je een valide token gebruikt?',
+
     ];

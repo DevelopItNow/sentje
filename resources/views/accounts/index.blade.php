@@ -39,6 +39,9 @@
 							</tr>
 							</tbody>
 						</table>
+							{!!Form::open(['action' => 'BankAccountController@exportAccount', 'method' => 'GET'])!!}
+							{{Form::submit(__('account.account_export'), ['class' => 'btn btn-primary'])}}
+							{!!Form::close()!!}
 					</div>
 				</div>
 			</div>

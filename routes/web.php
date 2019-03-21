@@ -17,8 +17,9 @@
         return view('welcome');
     });
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('lang/{locale}', 'LocalController@setLocale');
-Route::resource('/contacts', 'ContactController');
-Route::resource('/account', 'BankAccountController');
-Route::resource('/groups', 'GroupController');
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('lang/{locale}', 'LocalController@setLocale');
+    Route::resource('/contacts', 'ContactController');
+    Route::get('/account/exportAccount', 'BankAccountController@exportAccount')->name('account.exportAccount');
+    Route::resource('/account', 'BankAccountController');
+    Route::resource('/groups', 'GroupController');
