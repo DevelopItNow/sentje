@@ -37,4 +37,9 @@ class User extends Authenticatable
     {
         return $this->hasManyThrough('App\User', '\App\User');
     }
+
+    public function groups()
+    {
+        return $this->hasMany('App\Group');
+    }
 }

@@ -14,7 +14,7 @@ class GroupController extends Controller
      */
     public function index()
     {
-        //
+        return view('groups.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class GroupController extends Controller
      */
     public function create()
     {
-        //
+        return view('groups.create');
     }
 
     /**
@@ -35,7 +35,18 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string',
+            'description' => 'required|min:3|max:500',
+        ]);
+
+        $group = new Group;
+        $group->name = $request->input('name');
+        $group->description = $request->input('description');
+        $group->user_id = auth()->user()->id;
+        $group->save();
+
+        return redirect('/groups')->with('success', __('group.group_added'));
     }
 
     /**

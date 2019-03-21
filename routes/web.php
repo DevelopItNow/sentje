@@ -21,3 +21,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('lang/{locale}', 'LocalController@setLocale');
 Route::resource('/contacts', 'ContactController');
 Route::resource('/account', 'BankAccountController');
+Route::resource('/groups', 'GroupController');
