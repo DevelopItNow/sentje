@@ -14,7 +14,8 @@ class GroupController extends Controller
      */
     public function index()
     {
-        return view('groups.index');
+        $groups = Group::orderBy('id', 'ASC')->where('user_id', '=', auth()->user()->id)->paginate(10);
+        return view('groups.index' , ['groups' => $groups]);
     }
 
     /**
@@ -66,9 +67,19 @@ class GroupController extends Controller
      * @param  \App\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function edit(Group $group)
+    public function edit($id)
     {
-        //
+        $group = Group::find($id);
+
+        if ($group == null) {
+            return redirect('/groups')->with('error', __('error.unauthorized_page'));
+        }
+
+        if ($group->user_id != auth()->user()->id) {
+            return redirect('/groups')->with('error', __('error.unauthorized_page'));
+        }
+
+        return view('groups.edit')->with('group', $group);
     }
 
     /**
@@ -78,9 +89,28 @@ class GroupController extends Controller
      * @param  \App\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Group $group)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string',
+            'description' => 'required|min:3|max:500',
+        ]);
+
+        $group = Group::find($id);
+
+        if ($group == null) {
+            return redirect('/groups')->with('error', __('error.unauthorized_page'));
+        }
+
+        if ($group->user_id != auth()->user()->id) {
+            return redirect('/groups')->with('error', __('error.unauthorized_page'));
+        }
+
+        $group->name = $request->input('name');
+        $group->description = $request->input('description');
+        $group->save();
+
+        return redirect('/groups')->with('success', __('group.group_changed'));
     }
 
     /**

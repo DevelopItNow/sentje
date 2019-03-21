@@ -10,7 +10,7 @@
 	<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 		<a class="dropdown-item" href="{{route('account.index')}}">{{__('dashboard.accounts')}}</a>
 		<a class="dropdown-item" href="#">{{__('dashboard.requests')}}</a>
-		<a class="dropdown-item" href="#">{{__('dashboard.groups')}}</a>
+		<a class="dropdown-item" href="{{route('groups.index')}}">{{__('dashboard.groups')}}</a>
 	</div>
 </div>
 <hr>

@@ -13,6 +13,27 @@
                             </div>
                         @endif
                         @include('inc.dashboard_header')
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                <tr>
+                                    <th>{{__('account.name')}}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($groups as $group)
+                                    <tr>
+                                        <td>{{$group->name}}</td>
+                                        <td>
+                                            <a href="/groups/{{$group->id}}/edit" class="settings" title="Settings"
+                                               data-toggle="tooltip">{{__('group.edit')}}</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                <tr>
+                                    <td colspan="5">{{$groups->links()}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
                     </div>
                 </div>
             </div>
