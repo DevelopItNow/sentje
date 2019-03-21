@@ -51,6 +51,21 @@ class GroupController extends Controller
     }
 
     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeContact(Request $request, $id, $contact_id)
+    {
+
+    }
+
+    public function destroyContact(Request $request, $id, $contact_id)
+    {
+
+    }
+    /**
      * Display the specified resource.
      *
      * @param  \App\Group  $group
@@ -70,6 +85,7 @@ class GroupController extends Controller
     public function edit($id)
     {
         $group = Group::find($id);
+        $contacts = \App\User::orderBy('id', 'ASC')->join('contacts', 'users.id', '=', 'contacts.contact_id')->where('contacts.user_id', '=', auth()->user()->id)->paginate(10);
 
         if ($group == null) {
             return redirect('/groups')->with('error', __('error.unauthorized_page'));
@@ -79,7 +95,7 @@ class GroupController extends Controller
             return redirect('/groups')->with('error', __('error.unauthorized_page'));
         }
 
-        return view('groups.edit')->with('group', $group);
+        return view('groups.edit')->with('group', $group)->with('contacts', $contacts);
     }
 
     /**
