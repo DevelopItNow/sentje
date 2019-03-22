@@ -33,4 +33,8 @@ return [
     'clickhere' => 'click here to request another',
     'close' => 'Close',
 
+    'settings' => 'Settings',
+    'edit_settings' => 'Edit settings',
+    'edit_successfully' => 'Settings updated',
+
 ];

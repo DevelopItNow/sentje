@@ -5,6 +5,7 @@
     use App\BankAccount;
     use GuzzleHttp\Exception\ClientException;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Auth;
     use League\Flysystem\Filesystem;
     use Spatie\Dropbox\Client;
     use Spatie\Dropbox\Exceptions\BadRequest;
@@ -158,7 +159,7 @@
         public function exportAccount()
         {
             // Exporting the account values
-            $client = new Client(env("DROPBOX_TOKEN"));
+            $client = new Client(decrypt(Auth::user()->dropbox_token));
             try {
                 $accounts = BankAccount::orderBy('id', 'ASC')->where('user_id', '=', auth()->user()->id)->get();
                 $listAccounts = array();
