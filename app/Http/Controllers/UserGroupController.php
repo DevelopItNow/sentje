@@ -33,9 +33,14 @@ class UserGroupController extends Controller
      */
     public function destroy($group_id, $contact_id)
     {
-        $group = Group::find($group_id);
-        $contact = User::find($contact_id);
-        $group->users()->detach($contact);
-        return redirect()->back()->with('success', __('group.contact_deleted_from_group'));
+        try{
+            $group = Group::find($group_id);
+            $contact = User::find($contact_id);
+            $group->users()->detach($contact);
+            return redirect()->back()->with('success', __('group.contact_deleted_from_group'));
+        }
+        catch(Exception $e){
+            return redirect()->back()->with('error', __('group.error_delete'));
+        }
     }
 }

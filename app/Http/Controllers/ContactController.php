@@ -28,7 +28,7 @@ class ContactController extends Controller
     {
         $contacts = User::orderBy('id', 'ASC')
             ->join('contacts', 'users.id', '=', 'contacts.contact_id')
-            ->where('contacts.user_id', '=', auth()->user()->id)
+            ->where('contacts.user_id', '=', Auth::id())
             ->paginate(10);
         return view('contacts.index', ['contacts' => $contacts]);
     }
@@ -48,10 +48,10 @@ class ContactController extends Controller
 
         $user = User::where('email', $request->input('email'))->first();
 
-        if(!is_null($user) && $user->id != auth()->user()->id){
+        if(!is_null($user) && $user->id != Auth::id()){
             try{
                 $contact = new Contact;
-                $contact->user_id = auth()->user()->id;
+                $contact->user_id = Auth::id();
                 $contact->contact_id = $user->id;
 
                 $contact->save();
@@ -75,7 +75,7 @@ class ContactController extends Controller
      */
     public function destroy($id)
     {
-        $contact = Contact::where('user_id', auth()->user()->id)->where('contact_id', $id);
+        $contact = Contact::where('user_id', Auth::id())->where('contact_id', $id);
         $contact->delete();
         return redirect('/contacts')->with('success', __('contact.contact_deleted'));
     }

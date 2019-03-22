@@ -16,5 +16,6 @@ return [
     'contact_added_to_group' => 'Contact Toegevoegd Aan Groep.',
     'delete_contact' => 'Verwijderen Uit Groep',
     'contact_deleted_from_group' => 'Contact Verwijderd Uit Group.',
+    'error_delete' => 'Er is iets fout gegaan tijdens het verwijderen van dit contact.',
 
 ];
