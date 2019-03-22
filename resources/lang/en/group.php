@@ -17,5 +17,8 @@ return [
     'contact_added_to_group' => 'Contact Added To Group.',
     'delete_contact' => 'Delete',
     'contact_deleted_from_group' => 'Contact Deleted From Group.',
+    'delete_confirm' => 'Are you sure you want to delete this group?',
+    'delete' => 'Delete',
+    'group_deleted' => 'Group Deleted.',
 
 ];

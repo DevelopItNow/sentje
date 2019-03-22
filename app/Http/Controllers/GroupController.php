@@ -148,13 +148,13 @@ class GroupController extends Controller
     public function destroy($id)
     {
         $group = Group::find($id);
-
         if ($group == null) {
             return redirect('/groups')->with('error', __('error.unauthorized_page'));
         }
-
-        if ($group->user_id != auth()->user()->id) {
+        if ($group->user_id != Auth::id()) {
             return redirect('/groups')->with('error', __('error.unauthorized_page'));
         }
+        $group->delete();
+        return redirect('/groups')->with('success', __('group.group_deleted'));
     }
 }

@@ -13,9 +13,9 @@
 				{{$body}}
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('auth.close')}}</button>
 				{!!Form::open(['action' => [$action, $id], 'method' => 'POST'])!!}
 				{{Form::hidden('_method', $method)}}
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('auth.close')}}</button>
 				{{Form::submit($buttonText, ['class' => 'btn btn-danger', 'data-toggle' => 'modal', 'data-target' => '#openModal'])}}
 				{!!Form::close()!!}
 			</div>
