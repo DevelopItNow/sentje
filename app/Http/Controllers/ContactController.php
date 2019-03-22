@@ -6,6 +6,7 @@ use App\Contact;
 use App\User;
 use Illuminate\Http\Request;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 
 class ContactController extends Controller
 {

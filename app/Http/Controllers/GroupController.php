@@ -86,11 +86,14 @@ class GroupController extends Controller
         $group = Group::find($id);
         $contacts = User::orderBy('id', 'ASC')
             ->join('contacts', 'users.id', '=', 'contacts.contact_id')
+            ->join('group_user', 'group_user.user_id', '=', 'contacts.contact_id')
             ->where('contacts.user_id', '=', Auth::id())
+            ->where('group_user.user_id', '!=', 'contacts.contact_id')
             ->paginate(10);
         $added_contacts = User::orderBy('id', 'ASC')
             ->join('contacts', 'users.id', '=', 'contacts.contact_id')
-            ->join('group_user', 'group_user.user_id', '=', 'contacts.contact_id')->where('group_user.group_id', '=', $id)
+            ->join('group_user', 'group_user.user_id', '=', 'contacts.contact_id')
+            ->where('group_user.group_id', '=', $id)
             ->where('contacts.user_id', '=', Auth::id())
             ->paginate(10);
 
@@ -102,7 +105,9 @@ class GroupController extends Controller
             return redirect('/groups')->with('error', __('error.unauthorized_page'));
         }
 
-        return view('groups.edit')->with('group', $group)->with('contacts', $contacts)->with('added_contacts', $added_contacts);
+        return view('groups.edit')->with('group', $group)
+            ->with('contacts', $contacts)
+            ->with('added_contacts', $added_contacts);
     }
 
     /**
