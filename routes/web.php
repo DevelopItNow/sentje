@@ -26,3 +26,4 @@
     Route::resource('/account', 'BankAccountController');
     Route::resource('/groups', 'GroupController');
     Route::post('/groups/{group}/user/{contact}', 'UserGroupController@store')->name('storeUserGroup');
+    Route::delete('/groups/{group}/user/{contact}', 'UserGroupController@destroy')->name('destroyUserGroup');

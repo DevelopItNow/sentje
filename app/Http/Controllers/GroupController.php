@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Group;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GroupController extends Controller
 {
@@ -56,7 +58,7 @@ class GroupController extends Controller
         $group = new Group;
         $group->name = $request->input('name');
         $group->description = $request->input('description');
-        $group->user_id = \Auth::id();
+        $group->user_id = Auth::id();
         $group->save();
 
         return redirect('/groups')->with('success', __('group.group_added'));
@@ -82,9 +84,14 @@ class GroupController extends Controller
     public function edit($id)
     {
         $group = Group::find($id);
-        $contacts = \App\User::orderBy('id', 'ASC')
+        $contacts = User::orderBy('id', 'ASC')
             ->join('contacts', 'users.id', '=', 'contacts.contact_id')
-            ->where('contacts.user_id', '=', \Auth::id())
+            ->where('contacts.user_id', '=', Auth::id())
+            ->paginate(10);
+        $added_contacts = User::orderBy('id', 'ASC')
+            ->join('contacts', 'users.id', '=', 'contacts.contact_id')
+            ->join('group_user', 'group_user.user_id', '=', 'contacts.contact_id')->where('group_user.group_id', '=', $id)
+            ->where('contacts.user_id', '=', auth()->user()->id)
             ->paginate(10);
 
         if ($group == null) {
@@ -95,7 +102,7 @@ class GroupController extends Controller
             return redirect('/groups')->with('error', __('error.unauthorized_page'));
         }
 
-        return view('groups.edit')->with('group', $group)->with('contacts', $contacts);
+        return view('groups.edit')->with('group', $group)->with('contacts', $contacts)->with('added_contacts', $added_contacts);
     }
 
     /**
