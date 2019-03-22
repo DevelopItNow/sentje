@@ -33,4 +33,10 @@ return [
     'clickhere' => 'klik hier om een nieuwe link te ontvangen',
     'close' => 'Sluit',
 
+    'settings' => 'Instellingen',
+    'edit_settings' => 'Wijzig instellingen',
+    'edit_successfully' => 'Instellingen gewijzigd',
+
+
+
 ];
