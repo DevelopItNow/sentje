@@ -17,6 +17,7 @@
                                 <thead>
                                 <tr>
                                     <th>{{__('account.name')}}</th>
+                                    <th>{{__('account.action')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
