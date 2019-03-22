@@ -36,6 +36,7 @@
                             <tbody>
                             <h3 class="text-center">{{__('group.add_contact')}}</h3>
                             @foreach($contacts as $contact)
+                                @if(!in_array($contact->id, $added_contacts->toArray()))
                                 <tr>
                                     <td>{{decrypt($contact->name)}}</td>
                                     <td>
@@ -44,6 +45,7 @@
                                         {!!Form::close()!!}
                                     </td>
                                 </tr>
+                                @endif
                             @endforeach
                             <tr>
                                 <td colspan="5">{{$contacts->links()}}</td>
