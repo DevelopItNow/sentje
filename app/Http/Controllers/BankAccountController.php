@@ -60,7 +60,7 @@
 
             $bankAccount = new BankAccount;
             $bankAccount->name = encrypt($request->input('name'));
-            $bankAccount->user_id = auth()->user()->id;
+            $bankAccount->user_id = Auth::id();
             $bankAccount->account_number = encrypt($request->input('account_number'));
 
             $bankAccount->save();
@@ -94,7 +94,7 @@
                 return redirect('/account')->with('error', __('error.unauthorized_page'));
             }
 
-            if ($account->user_id != auth()->user()->id) {
+            if ($account->user_id != Auth::id()) {
                 return redirect('/account')->with('error', __('error.unauthorized_page'));
             }
 
@@ -122,12 +122,12 @@
                 return redirect('/account')->with('error', __('error.unauthorized_page'));
             }
 
-            if ($bankAccount->user_id != auth()->user()->id) {
+            if ($bankAccount->user_id != Auth::id()) {
                 return redirect('/account')->with('error', __('error.unauthorized_page'));
             }
 
             $bankAccount->name = encrypt($request->input('name'));
-            $bankAccount->user_id = auth()->user()->id;
+            $bankAccount->user_id = Auth::id();
             $bankAccount->account_number = encrypt($request->input('account_number'));
 
             $bankAccount->save();
@@ -151,7 +151,7 @@
                 return redirect('/account')->with('error', __('error.unauthorized_page'));
             }
 
-            if ($bankAccount->user_id != auth()->user()->id) {
+            if ($bankAccount->user_id != Auth::id()) {
                 return redirect('/account')->with('error', __('error.unauthorized_page'));
             }
 
@@ -171,7 +171,7 @@
             // Exporting the account values
             $client = new Client(decrypt(Auth::user()->dropbox_token));
             try {
-                $accounts = BankAccount::orderBy('id', 'ASC')->where('user_id', '=', auth()->user()->id)->get();
+                $accounts = BankAccount::orderBy('id', 'ASC')->where('user_id', '=', Auth::id())->get();
                 $listAccounts = array();
 
                 foreach ($accounts as $account) {

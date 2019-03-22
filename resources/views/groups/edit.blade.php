@@ -50,7 +50,30 @@
                             </tr>
                             </tbody>
                         </table>
-                        <h3 class="text-center">{{__('group.contacts')}}</h3>
+                        <table class="table table-striped table-hover">
+                            <thead>
+                            <tr>
+                                <th>{{__('account.name')}}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <h3 class="text-center">{{__('group.contacts')}}</h3>
+                            @foreach($added_contacts as $contact)
+                                <tr>
+                                    <td>{{decrypt($contact->name)}}</td>
+                                    <td>
+                                        {!!Form::open(['route' => ['destroyUserGroup', $group->id, $contact->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
+                                        {{Form::hidden('_method', 'DELETE')}}
+                                        {{Form::submit(__('group.delete_contact'), ['class' => 'btn btn-danger btn-block'])}}
+                                        {!!Form::close()!!}
+                                    </td>
+                                </tr>
+                            @endforeach
+                            <tr>
+                                <td colspan="5">{{$added_contacts->links()}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

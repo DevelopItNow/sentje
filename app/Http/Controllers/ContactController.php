@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Contact;
+use App\User;
 use Illuminate\Http\Request;
 use Exception;
 
@@ -24,7 +26,10 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = \App\User::orderBy('id', 'ASC')->join('contacts', 'users.id', '=', 'contacts.contact_id')->where('contacts.user_id', '=', auth()->user()->id)->paginate(10);
+        $contacts = User::orderBy('id', 'ASC')
+            ->join('contacts', 'users.id', '=', 'contacts.contact_id')
+            ->where('contacts.user_id', '=', Auth::id())
+            ->paginate(10);
         return view('contacts.index', ['contacts' => $contacts]);
     }
 
@@ -41,12 +46,12 @@ class ContactController extends Controller
             'email' => 'required|email',
         ]);
 
-        $user = \App\User::where('email', $request->input('email'))->first();
+        $user = User::where('email', $request->input('email'))->first();
 
-        if(!is_null($user) && $user->id != auth()->user()->id){
+        if(!is_null($user) && $user->id != Auth::id()){
             try{
-                $contact = new \App\Contact;
-                $contact->user_id = auth()->user()->id;
+                $contact = new Contact;
+                $contact->user_id = Auth::id();
                 $contact->contact_id = $user->id;
 
                 $contact->save();
@@ -70,7 +75,7 @@ class ContactController extends Controller
      */
     public function destroy($id)
     {
-        $contact = \App\Contact::where('user_id', auth()->user()->id)->where('contact_id', $id);
+        $contact = Contact::where('user_id', Auth::id())->where('contact_id', $id);
         $contact->delete();
         return redirect('/contacts')->with('success', __('contact.contact_deleted'));
     }
