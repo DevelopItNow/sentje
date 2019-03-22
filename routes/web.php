@@ -23,3 +23,4 @@
     Route::get('/account/exportAccount', 'BankAccountController@exportAccount')->name('account.exportAccount');
     Route::resource('/account', 'BankAccountController');
     Route::resource('/groups', 'GroupController');
+    Route::post('/groups/{group}/user/{contact}', 'UserGroupController@store')->name('storeUserGroup');

@@ -13,6 +13,16 @@
     class BankAccountController extends Controller
     {
         /**
+         * Create a new controller instance.
+         *
+         * @return void
+         */
+        public function __construct()
+        {
+            $this->middleware('auth');
+        }
+
+        /**
          * Display a listing of the resource.
          *
          * @return \Illuminate\Http\Response
@@ -61,7 +71,7 @@
          * Display the specified resource.
          *
          * @param  \App\BankAccount $bankAccount
-         * @return \Illuminate\Http\Response
+         * @return void
          */
         public function show(BankAccount $bankAccount)
         {
@@ -71,7 +81,7 @@
         /**
          * Show the form for editing the specified resource.
          *
-         * @param BankAccount $account
+         * @param $id
          * @return \Illuminate\Http\Response
          */
         public function edit($id)

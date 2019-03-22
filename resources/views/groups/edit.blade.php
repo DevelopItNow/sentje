@@ -31,17 +31,15 @@
                             <thead>
                             <tr>
                                 <th>{{__('account.name')}}</th>
-                                <th>{{__('account.action')}}</th>
                             </tr>
                             </thead>
                             <tbody>
                             <h3 class="text-center">{{__('group.add_contact')}}</h3>
                             @foreach($contacts as $contact)
                                 <tr>
-                                    <td>{{$contact->name}}</td>
+                                    <td>{{decrypt($contact->name)}}</td>
                                     <td>
-                                        {!!Form::open(['action' => ['GroupController@storeContact', $group->id, $contact->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
-                                        {{Form::hidden('_method', 'DELETE')}}
+                                        {!!Form::open(['route' => ['storeUserGroup', $group->id, $contact->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
                                         {{Form::submit(__('group.add_to_group'), ['class' => 'btn btn-success btn-block'])}}
                                         {!!Form::close()!!}
                                     </td>

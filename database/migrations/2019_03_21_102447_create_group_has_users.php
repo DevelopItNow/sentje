@@ -13,7 +13,8 @@ class CreateGroupHasUsers extends Migration
      */
     public function up()
     {
-        Schema::create('group_has_users', function (Blueprint $table) {
+        Schema::create('group_user', function (Blueprint $table) {
+            $table->primary(['group_id', 'user_id']);
             $table->integer('group_id')->unsigned();
             $table->foreign('group_id')->references('id')->on('groups');
             $table->integer('user_id')->unsigned();

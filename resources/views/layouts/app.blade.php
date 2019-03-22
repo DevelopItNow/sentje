@@ -49,6 +49,7 @@
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('auth.register') }}</a>
                                 </li>
                             @endif
+                            @include('inc.language_dropdown')
                         @else
                             <li class="nav-item">
                                 <a href="{{route('home')}}" class="nav-link">{{__('dashboard.dashboard')}}</a>
@@ -69,15 +70,7 @@
                                     </form>
                                 </div>
                             </li>
-                            <div class="dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{__('header.language')}} <span class="caret"></span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/lang/nl">{{__('header.dutch')}}</a>
-                                    <a class="dropdown-item" href= "/lang/en">{{__('header.english')}}</a>
-                                </div>
-                            </div>
+                            @include('inc.language_dropdown')
                         @endguest
                     </ul>
                 </div>

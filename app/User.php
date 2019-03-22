@@ -40,6 +40,6 @@ class User extends Authenticatable
 
     public function groups()
     {
-        return $this->hasMany('App\Group');
+        return $this->belongsToMany('App\Group', 'group_user', 'group_id', 'user_id');
     }
 }
