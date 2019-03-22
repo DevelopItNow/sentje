@@ -36,7 +36,7 @@
                             <tbody>
                             <h3 class="text-center">{{__('group.add_contact')}}</h3>
                             @foreach($contacts as $contact)
-                                @if(!in_array($contact->id, $added_contacts->toArray()))
+                                @if(!$added_contacts->contains($contact->id))
                                 <tr>
                                     <td>{{decrypt($contact->name)}}</td>
                                     <td>

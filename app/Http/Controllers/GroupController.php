@@ -86,9 +86,7 @@ class GroupController extends Controller
         $group = Group::find($id);
         $contacts = User::orderBy('id', 'ASC')
             ->join('contacts', 'users.id', '=', 'contacts.contact_id')
-            ->join('group_user', 'group_user.user_id', '=', 'contacts.contact_id', 'left outer')
             ->where('contacts.user_id', '=', Auth::id())
-            ->where('contacts.contact_id', '!=', 'group_user.user_id')
             ->paginate(10);
         $added_contacts = User::orderBy('id', 'ASC')
             ->join('contacts', 'users.id', '=', 'contacts.contact_id')
@@ -96,7 +94,6 @@ class GroupController extends Controller
             ->where('group_user.group_id', '=', $id)
             ->where('contacts.user_id', '=', Auth::id())
             ->paginate(10);
-
         if ($group == null) {
             return redirect('/groups')->with('error', __('error.unauthorized_page'));
         }

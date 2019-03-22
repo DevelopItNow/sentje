@@ -15,7 +15,7 @@ return [
     'error' => 'Something went wrong while adding this contact, you might have this person in your group already.',
     'error_delete' => 'Something went wrong while deleting this contact.',
     'contact_added_to_group' => 'Contact Added To Group.',
-    'delete_contact' => 'Delete From Group',
+    'delete_contact' => 'Delete',
     'contact_deleted_from_group' => 'Contact Deleted From Group.',
 
 ];
