@@ -14,7 +14,7 @@ class AddDropboxTokenToUsersModel extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->text('dropbox_token');
+            $table->text('dropbox_token')->default('');
         });
     }
 

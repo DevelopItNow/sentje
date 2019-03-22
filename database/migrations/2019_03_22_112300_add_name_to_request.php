@@ -4,7 +4,7 @@
     use Illuminate\Database\Schema\Blueprint;
     use Illuminate\Database\Migrations\Migration;
 
-    class RelationBetweenUsersAndBankAccount extends Migration
+    class AddNameToRequest extends Migration
     {
         /**
          * Run the migrations.
@@ -13,10 +13,8 @@
          */
         public function up()
         {
-            Schema::table('bank_accounts', function (Blueprint $table) {
-                $table->integer('user_id')->unsigned();
-                $table->foreign('user_id')->references('id')->on('users');
-
+            Schema::table('requests', function (Blueprint $table) {
+                $table->string('name')->after('user_id');
             });
         }
 
@@ -27,8 +25,8 @@
          */
         public function down()
         {
-            Schema::table('bank_accounts', function (Blueprint $table) {
-                $table->dropColumn('user_id');
+            Schema::table('requests', function (Blueprint $table) {
+                $table->dropColumn('name');
             });
         }
     }
