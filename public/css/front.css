@@ -43,3 +43,31 @@ button#dropdownMenuButtonLocal{
 .card-header.text-center{
     font-size: 24px;
 }
+
+#nl{
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url("https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/flags/4x3/nl.svg");
+    background-position: 50% center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 1em;
+    line-height: 1em;
+    vertical-align: middle;
+}
+
+#en{
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url("https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/flags/4x3/gb.svg");
+    background-position: 50% center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 1em;
+    line-height: 1em;
+    vertical-align: middle;
+}
