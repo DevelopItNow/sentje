@@ -20,6 +20,7 @@
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('lang/{locale}', 'LocalController@setLocale');
     Route::get('/settings', 'SettingsController@index')->name('settings');
+    Route::get('/calendar', 'CalendarController@index')->name('calendar');
     Route::put('/settings', 'SettingsController@update')->name('settings.update');
     Route::resource('/contacts', 'ContactController');
     Route::get('/account/exportAccount', 'BankAccountController@exportAccount')->name('account.exportAccount');

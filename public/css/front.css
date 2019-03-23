@@ -9,7 +9,7 @@ html, body {
 
 .links > a {
     color: #636b6f;
-    padding: 0 12px;
+    padding: 0 19px;
     font-size: 13px;
     font-weight: 600;
     letter-spacing: .1rem;
@@ -24,7 +24,7 @@ button.btn.btn-success.register{
 button#dropdownMenuButtonLocal{
     color: #636b6f;
     background-color: transparent;
-    padding: 0 12px;
+    padding: 0 15px;
     font-size: 13px;
     font-weight: 600;
     letter-spacing: .1rem;
