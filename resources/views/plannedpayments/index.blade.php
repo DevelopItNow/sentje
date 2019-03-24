@@ -3,7 +3,7 @@
     <div class="panel panel-primary">
         <div class="panel-body">
             <?php
-            $calendar->setId('calendar');
+            $calendar->setId('plannedpayments');
             ?>
             {!! $calendar->calendar() !!}
         </div>
@@ -16,7 +16,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/locale-all.js"></script>
     <script type="text/javascript">
         $(function() {
-            $('#calendar-calendar').fullCalendar({
+            $('#plannedpayments-plannedpayments').fullCalendar({
                 header: {
                     left: 'month',
                     center: 'title',

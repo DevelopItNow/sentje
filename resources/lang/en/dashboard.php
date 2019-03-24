@@ -11,7 +11,7 @@ return [
     'overview' => 'Overview',
     'accounts' => 'My Accounts',
     'requests' => 'My Requests',
-    'calendar' => 'My Calendar',
+    'plannedpayments' => 'My Calendar',
     'groups' => 'My Groups',
     'dashboard' => 'Dashboard',
 

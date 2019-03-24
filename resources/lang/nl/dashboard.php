@@ -20,7 +20,7 @@ return [
     'group' => 'Groep Maken',
     'overview' => 'Overzicht',
     'accounts' => 'Mijn Rekeningen',
-    'calendar' => 'Mijn Kalender',
+    'plannedpayments' => 'Mijn Kalender',
     'requests' => 'Mijn Verzoeken',
     'groups' => 'Mijn Groepen',
     'dashboard' => 'Overzicht',

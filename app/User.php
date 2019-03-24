@@ -33,6 +33,11 @@ class User extends Authenticatable
         return $this->hasMany('App\BankAccount');
     }
 
+    public function plannedPayments()
+    {
+        return $this->hasMany('App\PlannedPayment');
+    }
+
     public function contacts()
     {
         return $this->hasMany('App\Contact');
