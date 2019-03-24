@@ -35,11 +35,11 @@ class User extends Authenticatable
 
     public function contacts()
     {
-        return $this->hasManyThrough('App\User', '\App\User');
+        return $this->hasMany('\App\Contact');
     }
 
     public function groups()
     {
-        return $this->belongsToMany('App\Group', 'group_user', 'group_id', 'user_id');
+        return $this->hasMany('App\Group');
     }
 }

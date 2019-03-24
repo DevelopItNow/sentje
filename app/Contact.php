@@ -14,4 +14,9 @@ class Contact extends Model
         'user_id',
         'contact_id',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'contact_id');
+    }
 }
