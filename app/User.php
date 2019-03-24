@@ -28,7 +28,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function BankAccounts()
+    public function bankAccounts()
     {
         return $this->hasMany('App\BankAccount');
     }
