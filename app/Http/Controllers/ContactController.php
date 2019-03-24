@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
+use App\GroupUser;
 use App\User;
 use Illuminate\Http\Request;
 use Exception;
@@ -73,6 +74,8 @@ class ContactController extends Controller
     public function destroy($id)
     {
         Contact::where('user_id', Auth::id())->where('contact_id', $id)->delete();
+        GroupUser::where('user_id', $id)->delete();
+
         return redirect('/contacts')->with('success', __('contact.contact_deleted'));
     }
 }
