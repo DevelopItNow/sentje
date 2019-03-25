@@ -82,7 +82,8 @@
 								<tfoot>
 								<tr>
 									<td colspan="5" style="text-align: left;">
-										<input type="button" class="btn btn-lg btn-block btn-success" id="addrow" value="{{__('request.add_row')}}"/>
+										<input type="button" class="btn btn-lg btn-block btn-success" id="addrow"
+											   value="{{__('request.add_row')}}"/>
 									</td>
 								</tr>
 								<tr>

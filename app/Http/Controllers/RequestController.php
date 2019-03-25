@@ -72,7 +72,24 @@
                 'description' => 'required|string',
                 'amount' => 'required|numeric',
                 'mail*' => 'nullable|email',
+                'added_image' => 'nullable|image|max:1999',
             ]);
+
+            $hasImage = false;
+            // Handle File Upload
+            if($request->hasFile('added_image')) {
+                $hasImage = true;
+                // Get filename with the extension
+                $filenameWithExt = $request->file('added_image')->getClientOriginalName();
+                // Get filename with the extension
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                // Get just ext
+                $extension = $request->file('added_image')->getClientOriginalExtension();
+                // Filename to store
+                $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+                // Upload image
+                $path = $request->file('added_image')->storeAs('public/added_image', $fileNameToStore);
+            }
 
             // Make the payment request
             $paymentRequest = new PaymentRequest;
@@ -80,6 +97,10 @@
             $paymentRequest->name = encrypt($request->input('name'));
             $paymentRequest->description = encrypt($request->input('description'));
             $paymentRequest->amount = $request->input('amount');
+            if($hasImage) {
+                $paymentRequest->image =  $fileNameToStore;
+
+            }
             $paymentRequest->valuta = $request->input('currency');
             $paymentRequest->save();
 
