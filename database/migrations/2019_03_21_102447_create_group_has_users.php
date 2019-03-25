@@ -16,9 +16,9 @@ class CreateGroupHasUsers extends Migration
         Schema::create('group_user', function (Blueprint $table) {
             $table->primary(['group_id', 'user_id']);
             $table->integer('group_id')->unsigned();
-            $table->foreign('group_id')->references('id')->on('groups');
+            $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');;
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
         });
     }
 

@@ -32,9 +32,9 @@
                                 <tbody>
                                 @foreach($contacts as $contact)
                                     <tr>
-                                        <td>{{decrypt($contact->name)}}</td>
+                                        <td>{{decrypt($contact->user->name)}}</td>
                                         <td>
-                                            {!!Form::open(['action' => ['ContactController@destroy', $contact->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
+                                            {!!Form::open(['action' => ['ContactController@destroy', $contact->user->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
                                             {{Form::hidden('_method', 'DELETE')}}
                                             {{Form::submit(__('contact.delete_contact'), ['class' => 'btn btn-danger btn-block'])}}
                                             {!!Form::close()!!}

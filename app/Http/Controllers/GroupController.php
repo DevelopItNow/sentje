@@ -26,8 +26,7 @@ class GroupController extends Controller
      */
     public function index()
     {
-        $groups = Group::orderBy('id', 'ASC')->where('user_id', '=', \Auth::id())->paginate(10);
-        return view('groups.index' , ['groups' => $groups]);
+        return view('groups.index' , ['groups' => Auth::user()->groups()->paginate(10)]);
     }
 
     /**
@@ -84,18 +83,8 @@ class GroupController extends Controller
     public function edit($id)
     {
         $group = Group::find($id);
-        $contacts = User::orderBy('id', 'ASC')
-            ->join('contacts', 'users.id', '=', 'contacts.contact_id')
-            ->join('group_user', 'group_user.user_id', '=', 'contacts.contact_id')
-            ->where('contacts.user_id', '=', Auth::id())
-            ->where('group_user.user_id', '!=', 'contacts.contact_id')
-            ->paginate(10);
-        $added_contacts = User::orderBy('id', 'ASC')
-            ->join('contacts', 'users.id', '=', 'contacts.contact_id')
-            ->join('group_user', 'group_user.user_id', '=', 'contacts.contact_id')
-            ->where('group_user.group_id', '=', $id)
-            ->where('contacts.user_id', '=', Auth::id())
-            ->paginate(10);
+        $contacts = Auth::user()->contacts()->with('user')->paginate(10);
+        $added_contacts = Auth::user()->groups()->find($id)->users()->paginate(10);
 
         if ($group == null) {
             return redirect('/groups')->with('error', __('error.unauthorized_page'));
@@ -105,9 +94,7 @@ class GroupController extends Controller
             return redirect('/groups')->with('error', __('error.unauthorized_page'));
         }
 
-        return view('groups.edit')->with('group', $group)
-            ->with('contacts', $contacts)
-            ->with('added_contacts', $added_contacts);
+        return view('groups.edit')->with('group', $group)->with('contacts', $contacts)->with('added_contacts', $added_contacts);
     }
 
     /**
@@ -148,14 +135,16 @@ class GroupController extends Controller
      * @param  \App\Group $group
      * @return void
      */
-    public function destroy(Group $group)
+    public function destroy($id)
     {
+        $group = Group::find($id);
         if ($group == null) {
             return redirect('/groups')->with('error', __('error.unauthorized_page'));
         }
-
-        if ($group->user_id != auth()->user()->id) {
+        if ($group->user_id != Auth::id()) {
             return redirect('/groups')->with('error', __('error.unauthorized_page'));
         }
+        $group->delete();
+        return redirect('/groups')->with('success', __('group.group_deleted'));
     }
 }

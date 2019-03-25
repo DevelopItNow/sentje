@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
+use App\GroupUser;
 use App\User;
 use Illuminate\Http\Request;
 use Exception;
@@ -27,11 +28,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = User::orderBy('id', 'ASC')
-            ->join('contacts', 'users.id', '=', 'contacts.contact_id')
-            ->where('contacts.user_id', '=', Auth::id())
-            ->paginate(10);
-        return view('contacts.index', ['contacts' => $contacts]);
+        return view('contacts.index', ['contacts' => Auth::user()->contacts()->with('user')->paginate(10)]);
     }
 
     /**
@@ -76,8 +73,9 @@ class ContactController extends Controller
      */
     public function destroy($id)
     {
-        $contact = Contact::where('user_id', Auth::id())->where('contact_id', $id);
-        $contact->delete();
+        Contact::where('user_id', Auth::id())->where('contact_id', $id)->delete();
+        GroupUser::where('user_id', $id)->delete();
+
         return redirect('/contacts')->with('success', __('contact.contact_deleted'));
     }
 }

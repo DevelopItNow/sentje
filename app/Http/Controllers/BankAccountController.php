@@ -30,8 +30,7 @@
          */
         public function index()
         {
-            $bankaccounts = BankAccount::orderBy('id', 'ASC')->where('user_id', '=', auth()->user()->id)->paginate(10);
-            return view('accounts.index', ['bankaccounts' => $bankaccounts]);
+            return view('accounts.index', ['bankaccounts' => Auth::user()->bankaccounts()->orderBy('id', 'ASC')->paginate(10)]);
         }
 
         /**
@@ -167,8 +166,6 @@
 
             $bankAccount->delete();
             return redirect('/account')->with('success', __('account.account_deleted'));
-
-
         }
 
         /**
@@ -181,7 +178,7 @@
             // Exporting the account values
             $client = new Client(decrypt(Auth::user()->dropbox_token));
             try {
-                $accounts = BankAccount::orderBy('id', 'ASC')->where('user_id', '=', Auth::id())->get();
+                $accounts = Auth::user()->bankaccounts()->orderBy('id', 'ASC')->get();
                 $listAccounts = array();
 
                 foreach ($accounts as $account) {
@@ -196,10 +193,9 @@
 
                 // Redirect to account page
                 return redirect('account')->with('success', __('account.export_success'));
-            } catch (BadRequest $exception) {
-                return redirect('account')->with('error', __('account.export_failed'));
-
             }
-
+            catch (BadRequest $exception) {
+                return redirect('account')->with('error', __('account.export_failed'));
+            }
         }
     }

@@ -41,6 +41,12 @@
         {
             return $this->hasMany('App\Requests');
         }
+        
+        public function plannedPayments()
+        {
+            return $this->hasMany('App\PlannedPayment');
+        }
+
 
         public function contacts()
         {

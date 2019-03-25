@@ -62,8 +62,8 @@
                                 {{__('header.language')}}
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="lang/nl">{{__('header.dutch')}}</a>
-                                <a class="dropdown-item" href= "lang/en">{{__('header.english')}}</a>
+                                <a class="dropdown-item" href="/lang/nl"><i><span class="mr-1" role="img" id="nl"></span></i>{{__('header.dutch')}}</a>
+                                <a class="dropdown-item" href= "/lang/en"><i><span class="mr-1" role="img" id="en"></span></i>{{__('header.english')}}</a>
                             </div>
                 </div>
             @endif

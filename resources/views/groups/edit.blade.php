@@ -36,14 +36,16 @@
                             <tbody>
                             <h3 class="text-center">{{__('group.add_contact')}}</h3>
                             @foreach($contacts as $contact)
+                                @if(!$added_contacts->contains($contact->user->id))
                                 <tr>
-                                    <td>{{decrypt($contact->name)}}</td>
+                                    <td>{{decrypt($contact->user->name)}}</td>
                                     <td>
-                                        {!!Form::open(['route' => ['storeUserGroup', $group->id, $contact->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
+                                        {!!Form::open(['route' => ['storeUserGroup', $group->id, $contact->user->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
                                         {{Form::submit(__('group.add_to_group'), ['class' => 'btn btn-success btn-block'])}}
                                         {!!Form::close()!!}
                                     </td>
                                 </tr>
+                                @endif
                             @endforeach
                             <tr>
                                 <td colspan="5">{{$contacts->links()}}</td>
