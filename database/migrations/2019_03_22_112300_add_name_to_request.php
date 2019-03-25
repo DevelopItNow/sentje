@@ -13,7 +13,7 @@
          */
         public function up()
         {
-            Schema::table('requests', function (Blueprint $table) {
+            Schema::table('payment_requests', function (Blueprint $table) {
                 $table->string('name')->after('user_id');
             });
         }
@@ -25,7 +25,7 @@
          */
         public function down()
         {
-            Schema::table('requests', function (Blueprint $table) {
+            Schema::table('payment_requests', function (Blueprint $table) {
                 $table->dropColumn('name');
             });
         }

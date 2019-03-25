@@ -16,11 +16,12 @@
             Schema::create('requests_users', function (Blueprint $table) {
                 $table->increments('id');
                 $table->integer('request_id')->unsigned();
-                $table->integer('user_id')->unsigned();
-                $table->string('status');
+                $table->integer('user_id')->unsigned()->nullable();
+                $table->string('email')->nullable();
+                $table->boolean('paid');
 
                 $table->foreign('user_id')->references('id')->on('users');
-                $table->foreign('request_id')->references('id')->on('requests');
+                $table->foreign('request_id')->references('id')->on('payment_requests');
 
 
             });

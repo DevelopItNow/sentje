@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-	{{dd($contacts)}}
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-md-8">
@@ -24,10 +23,72 @@
 							{{Form::number('amount', '', ['class' => 'form-control','step'=>'any', 'placeholder' => __('request.amount')])}}
 						</div>
 						<div class="form-group">
-							{{Form::file('added_image')}}
+							{{Form::label('currency', __('request.currency'))}}
+							<br>
+							{{Form::select('currency', ['euro' => 'Euro', 'pound' => __('request.pound')], ['class' => 'form-control', 'placeholder' => __('calendar.currency')])}}
 						</div>
 						<div class="form-group">
+							{{Form::file('added_image')}}
+						</div>
+						<div class="form-group requests">
+							<div class="row">
+								<div class="col-sm-6">
+									<b>{{__('request.add_groups')}}</b><br>
+									<table>
+										@foreach($groups as $group)
+											<tr>
+												<td>{{$group->name}}</td>
+												<td><label class="switch ">
+														<input name="group_{{$group->id}}" type="checkbox">
+														<span class="slider round"></span>
+													</label></td>
+											</tr>
+										@endforeach
+									</table>
+								</div>
+								<div class="col-sm-6">
+									<b>{{__('request.add_users')}}</b><br>
+									<table>
+										@foreach($contacts as $contact)
+											<tr>
+												<td>{{decrypt($contact['name'])}}</td>
+												<td><label class="switch ">
+														<input name="contact_{{$contact['id']}}" type="checkbox">
+														<span class="slider round"></span>
+													</label></td>
+											</tr>
+										@endforeach
+									</table>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<table id="myTable" class=" table order-list">
+								<thead>
+								<tr>
+									<td>Mail</td>
+								</tr>
+								</thead>
+								<tbody>
+								<tr>
+									<td class="col-sm-4">
+										<input type="email" name="mail" class="form-control"/>
+									</td>
+									<td class="col-sm-2"><a class="deleteRow"></a>
 
+									</td>
+								</tr>
+								</tbody>
+								<tfoot>
+								<tr>
+									<td colspan="5" style="text-align: left;">
+										<input type="button" class="btn btn-lg btn-block " id="addrow" value="{{__('request.add_row')}}"/>
+									</td>
+								</tr>
+								<tr>
+								</tr>
+								</tfoot>
+							</table>
 						</div>
 
 
@@ -40,6 +101,25 @@
 	</div>
 	<script type="text/javascript">
         jQuery(document).ready(function () {
+            var counter = 0;
+
+            jQuery("#addrow").on("click", function () {
+                var newRow = $("<tr>");
+                var cols = "";
+
+                cols += '<td><input type="email" class="form-control" name="mail_' + counter + '"/></td>';
+
+                cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="{{__('request.delete')}}"></td>';
+                newRow.append(cols);
+                $("table.order-list").append(newRow);
+                counter++;
+            });
+
+
+            jQuery("table.order-list").on("click", ".ibtnDel", function (event) {
+                jQuery(this).closest("tr").remove();
+                counter -= 1
+            });
 
         });
 	</script>

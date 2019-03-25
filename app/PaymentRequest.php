@@ -4,8 +4,9 @@
 
     use Illuminate\Database\Eloquent\Model;
 
-    class Request extends Model
+    class PaymentRequest extends Model
     {
+
         protected $fillable = [
             'id',
             'user_id',
@@ -17,5 +18,10 @@
         public function user()
         {
             return $this->belongsTo('App\User');
+        }
+
+        public function RequestUsers()
+        {
+            return $this->belongsToMany('App\RequestsUsers');
         }
     }

@@ -13,7 +13,7 @@
          */
         public function up()
         {
-            Schema::create('requests', function (Blueprint $table) {
+            Schema::create('payment_requests', function (Blueprint $table) {
                 $table->increments('id');
                 $table->integer('user_id')->unsigned();
                 $table->foreign('user_id')->references('id')->on('users');
@@ -31,6 +31,6 @@
          */
         public function down()
         {
-            Schema::dropIfExists('requests');
+            Schema::dropIfExists('payment_requests');
         }
     }
