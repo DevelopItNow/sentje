@@ -10,5 +10,8 @@ return [
     'currency' => 'Currency',
     'pound' => 'Pound',
     'amount' => 'Amount',
+    'error' => 'Something went wrong while adding the receiver.',
+    'receiver_error' => 'Could not find receiver, or you tried adding yourself.',
+    'planned_payment_added' => 'The payment is planned for the receiver.',
 
 ];

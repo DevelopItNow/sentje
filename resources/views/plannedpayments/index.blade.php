@@ -16,7 +16,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/locale-all.js"></script>
     <script type="text/javascript">
         $(function() {
-            $('#plannedpayments-plannedpayments').fullCalendar({
+            $('#calendar-plannedpayments').fullCalendar({
                 header: {
                     left: 'month',
                     center: 'title',
@@ -32,6 +32,17 @@
                 handleWindowResize: true,
                 weekends: true, // Hide weekends
                 displayEventTime: true,
+                events : [
+                        @foreach($planned_payments as $planned_payment)
+                    {
+                        title : '{{ decrypt($planned_payment->payment_name) }}',
+                        start : '{{ $planned_payment->planned_date }}',
+                        end : '{{ $planned_payment->planned_date }}',
+                        color:  '#c34f48',
+                        url: 'plannedpayments/{{ $planned_payment->id }}',
+                    },
+                    @endforeach
+                ],
             });
         });
     </script>

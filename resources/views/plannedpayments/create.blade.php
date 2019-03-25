@@ -24,7 +24,7 @@
                         <div class="form-group">
                             {{Form::label('currency', __('calendar.currency'))}}
                             <br>
-                            {{Form::select('currency', ['Euro', __('calendar.pound')], ['class' => 'form-control', 'placeholder' => __('calendar.currency')])}}
+                            {{Form::select('currency', ['euro' => 'Euro', 'pound' => __('calendar.pound')], ['class' => 'form-control', 'placeholder' => __('calendar.currency')])}}
                         </div>
                         <div class="form-group">
                             {{Form::label('amount', __('calendar.amount'))}}
