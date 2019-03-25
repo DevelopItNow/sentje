@@ -17,8 +17,8 @@
         'pound' => 'Pound',
 
         'add_groups' => 'Add groups',
-        'add_users' => 'Add users',
-        'add_row' => 'Add row',
+        'add_users' => 'Add contacts',
+        'add_row' => 'Add',
 
         'user' => 'user',
 

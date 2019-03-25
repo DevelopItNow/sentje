@@ -33,7 +33,7 @@
          */
         public function index()
         {
-            $requests = PaymentRequest::orderBy('id', 'ASC')->where('user_id', '=', Auth::id())->paginate(10);
+            $requests = Auth::user()->PaymentRequests()->paginate(10);
             return view('requests.index', ['requests' => $requests]);
 
         }

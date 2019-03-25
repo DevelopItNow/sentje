@@ -37,9 +37,9 @@
             return $this->hasMany('App\BankAccount');
         }
 
-        public function Requests()
+        public function PaymentRequests()
         {
-            return $this->hasMany('App\Requests');
+            return $this->hasMany('App\PaymentRequest');
         }
         
         public function plannedPayments()
