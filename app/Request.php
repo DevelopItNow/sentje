@@ -1,20 +1,21 @@
 <?php
 
-namespace App;
+    namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+    use Illuminate\Database\Eloquent\Model;
 
-class Request extends Model
-{
-    protected $fillable = [
-        'id',
-        'name',
-        'account_number',
-        'user_id'
-    ];
-
-    public function user()
+    class Request extends Model
     {
-        return $this->belongsTo('App\User');
+        protected $fillable = [
+            'id',
+            'user_id',
+            'description',
+            'image',
+            'amount'
+        ];
+
+        public function user()
+        {
+            return $this->belongsTo('App\User');
+        }
     }
-}

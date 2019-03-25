@@ -71,12 +71,22 @@
         /**
          * Display the specified resource.
          *
-         * @param  \App\BankAccount $bankAccount
+         * @param $id
          * @return void
          */
-        public function show(BankAccount $bankAccount)
+        public function show($id)
         {
-            //
+            $account = BankAccount::find($id);
+
+            if ($account == null) {
+                return redirect('/account')->with('error', __('error.unauthorized_page'));
+            }
+
+            if ($account->user_id != auth()->user()->id) {
+                return redirect('/account')->with('error', __('error.unauthorized_page'));
+            }
+
+            return view('accounts.show')->with('account', $account);
         }
 
         /**

@@ -1,45 +1,54 @@
 <?php
 
-namespace App;
+    namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+    use Illuminate\Notifications\Notifiable;
+    use Illuminate\Contracts\Auth\MustVerifyEmail;
+    use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
-{
-    use Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'email', 'password', 'dropbox_token'
-    ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
-
-    public function BankAccounts()
+    class User extends Authenticatable
     {
-        return $this->hasMany('App\BankAccount');
-    }
+        use Notifiable;
 
-    public function contacts()
-    {
-        return $this->hasManyThrough('App\User', '\App\User');
-    }
+        /**
+         * The attributes that are mass assignable.
+         *
+         * @var array
+         */
+        protected $fillable = [
+            'name',
+            'email',
+            'password',
+            'dropbox_token'
+        ];
 
-    public function groups()
-    {
-        return $this->belongsToMany('App\Group', 'group_user', 'group_id', 'user_id');
+        /**
+         * The attributes that should be hidden for arrays.
+         *
+         * @var array
+         */
+        protected $hidden = [
+            'password',
+            'remember_token',
+        ];
+
+        public function BankAccounts()
+        {
+            return $this->hasMany('App\BankAccount');
+        }
+
+        public function Requests()
+        {
+            return $this->hasMany('App\Requests');
+        }
+
+        public function contacts()
+        {
+            return $this->hasManyThrough('App\User', '\App\User');
+        }
+
+        public function groups()
+        {
+            return $this->belongsToMany('App\Group', 'group_user', 'group_id', 'user_id');
+        }
     }
-}

@@ -25,5 +25,6 @@
     Route::get('/account/exportAccount', 'BankAccountController@exportAccount')->name('account.exportAccount');
     Route::resource('/account', 'BankAccountController');
     Route::resource('/groups', 'GroupController');
+    Route::resource('/request', 'RequestController');
     Route::post('/groups/{group}/user/{contact}', 'UserGroupController@store')->name('storeUserGroup');
     Route::delete('/groups/{group}/user/{contact}', 'UserGroupController@destroy')->name('destroyUserGroup');
