@@ -98,16 +98,18 @@
                     }
                 }
                 // Set all the contacts
-                if (substr($key, 0, 7) === "contact_") {
-                    $contactId = substr($key, 7);
+                if (substr($key, 0, 8) === "contact_") {
+                    $contactId = substr($key, 8);
                     if (!in_array($contactId, $userIdList)) {
                         array_push($userIdList, $contactId);
                     }
                 }
                 // Set all the emails
                 if (substr($key, 0, 4) === "mail") {
-                    if (!in_array($input, $userMailList)) {
-                        array_push($userMailList, $input);
+                    if ($input != null) {
+                        if (!in_array($input, $userMailList)) {
+                            array_push($userMailList, $input);
+                        }
                     }
                 }
             }
@@ -127,7 +129,8 @@
 
 
                 // Send mail
-                Mail::to($userInfo->email)->send(new SendPaymentRequestUrl(decrypt($userInfo->name), $requestUsers->id));
+                Mail::to($userInfo->email)->send(new SendPaymentRequestUrl(decrypt($userInfo->name),
+                    $requestUsers->id));
             }
 
             // Send a request to all the emails
@@ -142,6 +145,8 @@
                 // Send mail
                 Mail::to($email)->send(new SendPaymentRequestUrl(__('request.user'), $requestUsers->id));
             }
+
+            return redirect('/request')->with('success', __('request.success_send'));
         }
 
         /**

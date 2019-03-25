@@ -19,6 +19,7 @@
         'add_groups' => 'Add groups',
         'add_users' => 'Add contacts',
         'add_row' => 'Add',
+        'success_send' => 'The request has been send',
 
         'user' => 'user',
 

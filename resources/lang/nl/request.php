@@ -19,6 +19,7 @@
         'add_groups' => 'Voeg groep toe',
         'add_users' => 'Voeg gebruiker toe',
         'add_row' => 'Voeg rij toe',
+        'success_send' => 'Het betaalverzoek is verstuurd',
 
         'user' => 'gebruiker',
 
