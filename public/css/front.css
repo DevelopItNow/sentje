@@ -134,3 +134,6 @@ button#dropdownMenuButtonLocal{
 .requests .slider.round:before {
     border-radius: 50%;
 }
+.user-information{
+    font-size:16px;
+}

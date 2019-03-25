@@ -33,8 +33,8 @@
 						<div class="form-group requests">
 							<div class="row">
 								<div class="col-sm-6">
-									<b>{{__('request.add_groups')}}</b><br>
-									<table>
+									<p class="font-weight-bold user-information">{{__('request.add_groups')}}</p><br>
+									<table class="user-information">
 										@foreach($groups as $group)
 											<tr>
 												<td>{{$group->name}}</td>
@@ -47,8 +47,8 @@
 									</table>
 								</div>
 								<div class="col-sm-6">
-									<b>{{__('request.add_users')}}</b><br>
-									<table>
+									<p class="font-weight-bold user-information">{{__('request.add_users')}}</p><br>
+									<table class="user-information">
 										@foreach($contacts as $contact)
 											<tr>
 												<td>{{decrypt($contact['name'])}}</td>

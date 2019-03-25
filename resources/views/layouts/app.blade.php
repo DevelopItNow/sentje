@@ -21,6 +21,7 @@
     <link href="{{ asset('css/front.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.css"/>
     <link rel="stylesheet" media="print" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.print.css"/>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 
 </head>
 <body>
@@ -95,5 +96,33 @@
     </main>
 </div>
 @yield('scripts')
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $( function() {
+        $('.date').datepicker({
+            dateFormat: 'dd/mm/yy',
+            @if(Config::get('app.locale') == 'nl')
+            closeText: 'Sluiten',
+            prevText: '←',
+            nextText: '→',
+            currentText: 'Vandaag',
+            monthNames: ['januari', 'februari', 'maart', 'april', 'mei', 'juni',
+            'juli', 'augustus', 'september', 'oktober', 'november', 'december'],
+            monthNamesShort: ['jan', 'feb', 'mrt', 'apr', 'mei', 'jun',
+            'jul', 'aug', 'sep', 'okt', 'nov', 'dec'],
+            dayNames: ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'],
+            dayNamesShort: ['zon', 'maa', 'din', 'woe', 'don', 'vri', 'zat'],
+            dayNamesMin: ['zo', 'ma', 'di', 'wo', 'do', 'vr', 'za'],
+            weekHeader: 'Wk',
+            dateFormat: 'dd-mm-yy',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ''
+            @endif
+        });
+    });
+</script>
 </body>
 </html>

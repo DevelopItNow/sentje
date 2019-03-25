@@ -12,7 +12,7 @@
 		<a class="dropdown-item" href="{{route('account.index')}}">{{__('dashboard.accounts')}}</a>
 		<a class="dropdown-item" href="{{route('request.index')}}">{{__('dashboard.requests')}}</a>
 		<a class=" dropdown-item" href="{{route('groups.index')}}">{{__('dashboard.groups')}}</a>
-		<a class="dropdown-item" href="{{route('plannedpayments.index')}}">{{__('plannedpayments')}}</a>
+		<a class="dropdown-item" href="{{route('plannedpayments.index')}}">{{__('dashboard.plannedpayments')}}</a>
 	</div>
 </div>
 <hr>
