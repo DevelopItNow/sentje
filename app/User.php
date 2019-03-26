@@ -44,9 +44,8 @@
         
         public function plannedPayments()
         {
-            return $this->hasMany('App\PlannedPayment');
+            return $this->hasMany('App\PlannedPayment', 'receiver_id');
         }
-
 
         public function contacts()
         {

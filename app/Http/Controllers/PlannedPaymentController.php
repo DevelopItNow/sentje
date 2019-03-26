@@ -29,7 +29,7 @@ class PlannedPaymentController extends Controller
      */
     public function index()
     {
-        $planned_payments = PlannedPayment::where('receiver_id', Auth::id())->get();
+        $planned_payments = Auth::user()->plannedPayments;
         $calendar = Calendar::addEvents(array());
         return view('plannedpayments.index', compact('calendar'))->with(['planned_payments' => $planned_payments]);;
     }
@@ -87,9 +87,18 @@ class PlannedPaymentController extends Controller
      * @param  \App\PlannedPayment  $plannedPayment
      * @return \Illuminate\Http\Response
      */
-    public function show(PlannedPayment $plannedPayment)
+    public function show($id)
     {
-        //
+        $planned_payment = PlannedPayment::find($id);
+
+        if ($planned_payment == null) {
+            return redirect('/plannedpayments')->with('error', __('error.unauthorized_page'));
+        }
+
+        if ($planned_payment->receiver_id != Auth::id()) {
+            return redirect('/plannedpayments')->with('error', __('error.unauthorized_page'));
+        }
+        return view('plannedpayments.show')->with('planned_payment', $planned_payment);
     }
 
     /**

@@ -15,10 +15,11 @@ class RequestsUsers extends Model
         'status'
     ];
 
-    public function user()
+    public function users()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsToMany('App\User');
     }
+
     public function request()
     {
         return $this->belongsTo('App\PaymentRequest');
