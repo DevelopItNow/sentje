@@ -32,6 +32,7 @@
             $mainRequest = $request->request;
 
             $requestInfo->paid = $request->paid;
+            $requestInfo->id = $newId;
             $requestInfo->nameRequest = decrypt($mainRequest->name);
             $requestInfo->descRequest = decrypt($mainRequest->description);
             $requestInfo->amount = $mainRequest->amount;

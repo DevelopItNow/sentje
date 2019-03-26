@@ -29,6 +29,6 @@
         'paid' => 'Paid',
         'notpaid' => 'Not paid',
 
-        'notpaid' => 'Not paid',
+        'paidmessage' => 'The request has been paid',
 
     ];

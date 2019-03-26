@@ -8,8 +8,6 @@
 					<div class="card-header text-center">{{$request->nameRequest}}</div>
 
 					<div class="card-body text-center">
-
-
 						<div class="form-group">
 							<p class="user-information font-weight-bold">{{__('request.amount')}}</p>
 							@if($request->currency = 'euro')
@@ -31,9 +29,13 @@
 								</tr>
 							@endif
 						</div>
-							{!!Form::open(['route' => ['pay', $request->amount, $request->currency], 'method' => 'POST'])!!}
+						@if($request->paid == 0)
+							{!!Form::open(['route' => ['pay', $request->amount, $request->currency, 'request', $request->id], 'method' => 'POST'])!!}
 							{{Form::submit(__('calendar.pay_planned_payment'), ['class' => 'btn btn-success'])}}
 							{!! Form::close() !!}
+						@else
+						<p>{{__('request.paidmessage')}}</p>
+						@endif
 					</div>
 				</div>
 			</div>
