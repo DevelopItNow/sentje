@@ -90,6 +90,7 @@ class PlannedPaymentController extends Controller
     public function show($id)
     {
         $planned_payment = PlannedPayment::find($id);
+        $sender = User::find($planned_payment->sender_id);
 
         if ($planned_payment == null) {
             return redirect('/plannedpayments')->with('error', __('error.unauthorized_page'));
@@ -98,7 +99,7 @@ class PlannedPaymentController extends Controller
         if ($planned_payment->receiver_id != Auth::id()) {
             return redirect('/plannedpayments')->with('error', __('error.unauthorized_page'));
         }
-        return view('plannedpayments.show')->with('planned_payment', $planned_payment);
+        return view('plannedpayments.show')->with('planned_payment', $planned_payment)->with('sender', $sender);
     }
 
     /**
@@ -134,4 +135,5 @@ class PlannedPaymentController extends Controller
     {
         //
     }
+
 }
