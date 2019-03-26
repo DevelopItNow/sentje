@@ -23,6 +23,7 @@
     Route::get('/account/exportAccount', 'BankAccountController@exportAccount')->name('account.exportAccount');
 
     Route::post('/groups/{group}/user/{contact}', 'UserGroupController@store')->name('storeUserGroup');
+    Route::post('/pay/{amount}/{currency}', 'PayController@pay')->name('pay');
     Route::delete('/groups/{group}/user/{contact}', 'UserGroupController@destroy')->name('destroyUserGroup');
     Route::put('/settings', 'SettingsController@update')->name('settings.update');
 

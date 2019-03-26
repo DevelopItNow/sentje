@@ -31,9 +31,8 @@
                             {{decrypt($planned_payment->description)}}
                         </div>
                         @if(date('Y-m-d') < $planned_payment->planned_date)
-                            {!! Form::open(['action' => ['PlannedPaymentController@update', $planned_payment->id],  'method' => 'POST']) !!}
-                            {{Form::hidden('_method', 'PUT')}}
-                            {{Form::submit(__('calendar.pay_planned_payment'), ['class' => 'btn btn-primary'])}}
+                            {!!Form::open(['route' => ['pay', $planned_payment->amount, $planned_payment->currency], 'method' => 'POST'])!!}
+                            {{Form::submit(__('calendar.pay_planned_payment'), ['class' => 'btn btn-success'])}}
                             {!! Form::close() !!}
                             @else
                             <p class="user-information font-weight-bold">{{__('calendar.payment_not_available')}}</p>
