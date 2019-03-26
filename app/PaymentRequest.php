@@ -22,7 +22,7 @@
 
         public function RequestUsers()
         {
-            return $this->hasMany('App\RequestsUsers');
+            return $this->hasMany('App\RequestsUsers', 'request_id');
         }
 
         public function bankAccount()

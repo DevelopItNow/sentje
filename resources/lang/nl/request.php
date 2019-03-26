@@ -17,7 +17,6 @@
         'pound' => 'Pond',
         'select_account' => 'Selecteer uw bank account',
 
-
         'add_groups' => 'Voeg groep toe',
         'add_users' => 'Voeg gebruiker toe',
         'add_row' => 'Voeg rij toe',
@@ -26,5 +25,8 @@
         'user' => 'gebruiker',
         'request' => 'Verzoek',
         'all_statuses' => 'Alle statusen',
+
+        'paid' => 'Betaald',
+        'notpaid' => 'Niet betaald',
 
     ];

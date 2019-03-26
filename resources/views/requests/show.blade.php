@@ -32,9 +32,15 @@
 						</table>
 						<h2>{{__('request.all_statuses')}}</h2>
 						<table>
-							{{dd($requestUser)}}
-						@foreach($requestUser as $user)
-
+							@foreach($requestUser as $user)
+								<tr>
+									<td>{{$user['name']}}</td>
+									@if($user['paid'] != 0)
+									<td>{{__('request.paid')}}</td>
+									@else
+									<td>{{__('request.notpaid')}}</td>
+									@endif
+								</tr>
 							@endforeach
 						</table>
 					</div>

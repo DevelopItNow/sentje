@@ -197,8 +197,20 @@
                 return redirect('/request')->with('error', __('error.unauthorized_page'));
             }
 
-            $requestUser = $request->RequestUsers();
-            return view('requests.show')->with(['request' => $request, 'requestUser' => $requestUser]);
+//            $requestUser = PaymentRequest::find($id)->RequestUsers();
+            $requestUser = $request->RequestUsers;
+            $userList = array();
+            foreach ($requestUser as $user) {
+                if ($user->user_id != null) {
+                    $contactInfo = User::where('id', '=', $user->user_id)->first();
+                    array_push($userList, ["name" => decrypt($contactInfo->name), "paid" => $user->paid]);
+                } else {
+                    array_push($userList, ["name" => $user->email, "paid" => $user->paid]);
+                }
+
+            }
+
+            return view('requests.show')->with(['request' => $request, 'requestUser' => $userList]);
         }
 
         /**

@@ -26,5 +26,7 @@
         'request' => 'Request',
         'all_statuses' => 'All statuses',
 
+        'paid' => 'Paid',
+        'notpaid' => 'Not paid',
 
     ];
