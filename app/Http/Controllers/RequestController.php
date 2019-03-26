@@ -187,7 +187,18 @@
          */
         public function show($id)
         {
-            //
+            $request = PaymentRequest::find($id);
+
+            if ($request == null) {
+                return redirect('/request')->with('error', __('error.unauthorized_page'));
+            }
+
+            if ($request->user_id != auth()->user()->id) {
+                return redirect('/request')->with('error', __('error.unauthorized_page'));
+            }
+
+            $requestUser = $request->RequestUsers();
+            return view('requests.show')->with(['request' => $request, 'requestUser' => $requestUser]);
         }
 
         /**
@@ -198,17 +209,7 @@
          */
         public function edit($id)
         {
-            $request = PaymentRequest::find($id);
-
-            if ($request == null) {
-                return redirect('/request')->with('error', __('error.unauthorized_page'));
-            }
-
-            if ($request->user_id != Auth::id()) {
-                return redirect('/request')->with('error', __('error.unauthorized_page'));
-            }
-
-            return view('requests.edit')->with('request', $request);
+            return redirect('/request');
         }
 
         /**

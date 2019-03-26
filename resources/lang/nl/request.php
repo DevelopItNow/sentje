@@ -24,5 +24,7 @@
         'success_send' => 'Het betaalverzoek is verstuurd',
 
         'user' => 'gebruiker',
+        'request' => 'Verzoek',
+        'all_statuses' => 'Alle statusen',
 
     ];

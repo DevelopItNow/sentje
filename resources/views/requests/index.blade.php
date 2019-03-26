@@ -18,7 +18,6 @@
 							<tr>
 								<th>{{__('request.name')}}</th>
 								<th>{{__('request.created_at')}}</th>
-								<th>{{__('request.action')}}</th>
 							</tr>
 							</thead>
 							<tbody>
@@ -26,10 +25,6 @@
 								<tr>
 									<td><a href="/request/{{$request->id}}">{{decrypt($request->name)}}</a></td>
 									<td>{{date('d-m-Y', strtotime($request->created_at))}}</td>
-									<td>
-										<a href="/request/{{$request->id}}/edit" class="settings" title="Settings"
-										   data-toggle="tooltip">{{__('request.edit')}}</a>
-									</td>
 								</tr>
 							@endforeach
 							<tr>

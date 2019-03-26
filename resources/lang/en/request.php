@@ -23,5 +23,8 @@
         'success_send' => 'The request has been send',
 
         'user' => 'user',
+        'request' => 'Request',
+        'all_statuses' => 'All statuses',
+
 
     ];
