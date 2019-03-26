@@ -29,4 +29,6 @@
         'paid' => 'Paid',
         'notpaid' => 'Not paid',
 
+        'notpaid' => 'Not paid',
+
     ];

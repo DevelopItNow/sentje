@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Mollie\Laravel\Facades\Mollie;
 
 class PayController extends Controller
 {

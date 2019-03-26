@@ -160,7 +160,7 @@
 
                 // Send mail
                 Mail::to($userInfo->email)->send(new SendPaymentRequestUrl(decrypt($userInfo->name),
-                    $requestUsers->id));
+                    encrypt($requestUsers->id)));
             }
 
             // Send a request to all the emails
@@ -173,7 +173,7 @@
                 $requestUsers->save();
 
                 // Send mail
-                Mail::to($email)->send(new SendPaymentRequestUrl(__('request.user'), $requestUsers->id));
+                Mail::to($email)->send(new SendPaymentRequestUrl(__('request.user'), encrypt($requestUsers->id)));
             }
 
             return redirect('/request')->with('success', __('request.success_send'));
