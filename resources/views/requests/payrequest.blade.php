@@ -10,7 +10,7 @@
 					<div class="card-body text-center">
 						<div class="form-group">
 							<p class="user-information font-weight-bold">{{__('request.amount')}}</p>
-							@if($request->currency = 'euro')
+							@if($request->currency == 'euro')
 								€
 							@else
 								£

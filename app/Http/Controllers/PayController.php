@@ -15,6 +15,11 @@
             } else {
                 $currenyTo = 'GBP';
             }
+
+            if (strpos($amount, '.') === false) {
+                $amount = $amount .'.00';
+            }
+
             $payment = Mollie::api()->payments()->create([
                 'amount' => [
                     'currency' => $currenyTo,
