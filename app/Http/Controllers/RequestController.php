@@ -45,7 +45,7 @@
          */
         public function create()
         {
-            $contacts = Contact::where('user_id', '=', Auth::id())->get();
+            $contacts = Auth::user()->contacts;
 
             $contactList = array();
 
@@ -54,7 +54,14 @@
                 array_push($contactList, ["name" => $contactInfo->name, "id" => $contactInfo->id]);
             }
             $groups = Auth::user()->groups;
-            return view('requests.create')->with(['contacts' => $contactList, 'groups' => $groups]);
+
+            $bankAccounts = Auth::user()->BankAccounts;
+
+            return view('requests.create')->with([
+                'contacts' => $contactList,
+                'groups' => $groups,
+                'bankaccounts' => $bankAccounts,
+            ]);
         }
 
         /**
@@ -73,11 +80,12 @@
                 'amount' => 'required|numeric',
                 'mail*' => 'nullable|email',
                 'added_image' => 'nullable|image|max:1999',
+                'bank_account' => 'required',
             ]);
 
             $hasImage = false;
             // Handle File Upload
-            if($request->hasFile('added_image')) {
+            if ($request->hasFile('added_image')) {
                 $hasImage = true;
                 // Get filename with the extension
                 $filenameWithExt = $request->file('added_image')->getClientOriginalName();
@@ -97,8 +105,9 @@
             $paymentRequest->name = encrypt($request->input('name'));
             $paymentRequest->description = encrypt($request->input('description'));
             $paymentRequest->amount = $request->input('amount');
-            if($hasImage) {
-                $paymentRequest->image =  $fileNameToStore;
+            $paymentRequest->account_id = $request->input('bank_account');
+            if ($hasImage) {
+                $paymentRequest->image = $fileNameToStore;
 
             }
             $paymentRequest->valuta = $request->input('currency');

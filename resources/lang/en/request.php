@@ -15,6 +15,7 @@
         'send_to' => 'Send to:',
         'currency' => 'Currency',
         'pound' => 'Pound',
+        'select_account' => 'Select your bank account',
 
         'add_groups' => 'Add groups',
         'add_users' => 'Add contacts',

@@ -24,4 +24,9 @@
         {
             return $this->belongsToMany('App\RequestsUsers');
         }
+
+        public function bankAccount()
+        {
+            return $this->belongsTo('App\BankAccount');
+        }
     }

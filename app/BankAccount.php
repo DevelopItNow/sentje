@@ -17,4 +17,9 @@
         {
             return $this->belongsTo('App\User');
         }
+
+        public function paymentRequests()
+        {
+            return $this->belongsToMany('App\PaymentRequests');
+        }
     }

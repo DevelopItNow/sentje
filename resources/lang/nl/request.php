@@ -15,6 +15,8 @@
         'send_to' => 'Versturen naar:',
         'currency' => 'Valuta',
         'pound' => 'Pond',
+        'select_account' => 'Selecteer uw bank account',
+
 
         'add_groups' => 'Voeg groep toe',
         'add_users' => 'Voeg gebruiker toe',
