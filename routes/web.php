@@ -28,6 +28,7 @@
     Route::delete('/groups/{group}/user/{contact}', 'UserGroupController@destroy')->name('destroyUserGroup');
     Route::put('/settings', 'SettingsController@update')->name('settings.update');
 
+    Route::post('/payrequest/', 'PayRequestController@store')->name('payrequest.store');
     Route::get('/payrequest/{id}', 'PayRequestController@pay')->name('payrequest');
     Route::resource('/contacts', 'ContactController');
     Route::resource('/account', 'BankAccountController');

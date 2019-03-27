@@ -4,6 +4,7 @@
 
     use App\PlannedPayment;
     use App\RequestsUsers;
+    use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Config;
     use Illuminate\Support\Facades\Cookie;
     use Mollie\Laravel\Facades\Mollie;
@@ -11,7 +12,7 @@
 
     class PayController extends Controller
     {
-        public function pay($amount, $currency, $id, $type)
+        public function pay(Request $request, $amount, $currency, $type, $id)
         {
             if ($currency == 'euro') {
                 $currencyTo = 'EUR';
@@ -29,6 +30,11 @@
 
             if (strpos($amount, '.') === false) {
                 $amount = $amount .'.00';
+            }
+            if($request->input('note') != null) {
+                $userRequest = RequestsUsers::find($id);
+                $userRequest->note = $request->input('note');
+                $userRequest->save();
             }
 
             $payment = Mollie::api()->payments()->create([

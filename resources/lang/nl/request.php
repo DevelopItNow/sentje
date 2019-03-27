@@ -31,6 +31,8 @@
 
         'paidmessage' => 'Het verzoek is betaald',
         'paid_on' => 'Betaald op:',
+        'add_note' => 'Voeg een opmerking toe:',
+        'note' => 'Opmerking',
 
         'delete_request' => 'Verwijder verzoek',
         'delete_confirm' => 'Weet je zeker dat je dit verzoekt wilt verwijderen?',

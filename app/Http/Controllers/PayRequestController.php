@@ -5,6 +5,7 @@
     use App\RequestsUsers;
     use App\User;
     use Illuminate\Contracts\Encryption\DecryptException;
+    use Illuminate\Http\Request;
     use stdClass;
 
     class PayRequestController extends Controller
@@ -17,8 +18,7 @@
         {
             try {
                 $newId = decrypt($id);
-            }
-            catch (DecryptException $e) {
+            } catch (DecryptException $e) {
                 return redirect('/');
             }
 
@@ -43,4 +43,5 @@
 
             return view('requests.payrequest')->with('request', $requestInfo);
         }
+
     }

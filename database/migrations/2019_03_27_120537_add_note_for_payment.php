@@ -14,7 +14,7 @@
         public function up()
         {
             Schema::table('requests_users', function (Blueprint $table) {
-                $table->string('note');
+                $table->string('note')->nullable();
             });
         }
 
@@ -25,7 +25,7 @@
          */
         public function down()
         {
-            Schema::table('request_users', function (Blueprint $table) {
+            Schema::table('requests_users', function (Blueprint $table) {
                 $table->dropColumn('note');
             });
         }

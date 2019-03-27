@@ -31,10 +31,15 @@
 						</div>
 						@if($request->paid == 0)
 							{!!Form::open(['route' => ['pay', $request->amount, $request->currency, 'request', $request->id], 'method' => 'POST'])!!}
+
+							<div class="form-group">
+								{{Form::label('note', __('request.add_note'), ['class' => 'font-weight-bold'])}}
+								{{Form::text('note', '', ['class' => 'form-control', 'placeholder' => __('request.note')])}}
+							</div>
 							{{Form::submit(__('calendar.pay_planned_payment'), ['class' => 'btn btn-success'])}}
 							{!! Form::close() !!}
 						@else
-						<p>{{__('request.paidmessage')}}</p>
+							<p>{{__('request.paidmessage')}}</p>
 							<p>{{__('request.paid_on')}} {{$request->updated_at}}</p>
 						@endif
 					</div>
