@@ -35,6 +35,7 @@
 							{!! Form::close() !!}
 						@else
 						<p>{{__('request.paidmessage')}}</p>
+							<p>{{__('request.paid_on')}} {{$request->updated_at}}</p>
 						@endif
 					</div>
 				</div>

@@ -30,5 +30,6 @@
         'notpaid' => 'Niet betaald',
 
         'paidmessage' => 'Het verzoek is betaald',
+        'paid_on' => 'Betaald op:'
 
     ];
