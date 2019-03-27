@@ -52,6 +52,11 @@
             return $this->hasMany('App\Contact');
         }
 
+        public function donations()
+        {
+            return $this->hasMany('App\Donation');
+        }
+
         public function groups()
         {
             return $this->hasMany('App\Group');

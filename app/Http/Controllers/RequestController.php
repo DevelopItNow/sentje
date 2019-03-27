@@ -197,7 +197,6 @@
                 return redirect('/request')->with('error', __('error.unauthorized_page'));
             }
 
-//            $requestUser = PaymentRequest::find($id)->RequestUsers();
             $requestUser = $request->RequestUsers;
             $userList = array();
             $showDelete = true;
@@ -205,9 +204,10 @@
                 if ($user->user_id != null) {
                     $contactInfo = User::where('id', '=', $user->user_id)->first();
 
-                    array_push($userList, ["name" => decrypt($contactInfo->name), "paid" => $user->paid]);
+                    array_push($userList,
+                        ["name" => decrypt($contactInfo->name), "paid" => $user->paid, "note" => $user->note]);
                 } else {
-                    array_push($userList, ["name" => $user->email, "paid" => $user->paid]);
+                    array_push($userList, ["name" => $user->email, "paid" => $user->paid, "note" => $user->note]);
                 }
                 if ($user->paid == 1) {
                     $showDelete = false;

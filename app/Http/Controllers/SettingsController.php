@@ -21,7 +21,8 @@
         public function index()
         {
             $user = User::find(Auth::id());
-            return view('auth.settings')->with("user", $user);
+            $accounts = $user->BankAccounts;
+            return view('auth.settings')->with(["user" => $user, "accounts" => $accounts]);
         }
 
         /**
@@ -43,6 +44,12 @@
             $user->name = encrypt($request->input('name'));
             if ($request->input('dropbox_token') != null) {
                 $user->dropbox_token = encrypt($request->input('dropbox_token'));
+            }
+
+            if ($request->input('donation_account') == 0) {
+                $user->donation_account = $request->input(null);
+            } else {
+                $user->donation_account = $request->input('donation_account');
             }
             $user->save();
 
