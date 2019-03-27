@@ -28,7 +28,11 @@
 								<option value="0" selected>{{ __('account.disable_donation') }}</option>
 
 								@foreach ($accounts as $account)
-									<option value="{{ $account->id }}">{{ decrypt($account->name) }}</option>
+									@if($user->donation_account == $account->id)
+										<option value="{{ $account->id }}" selected>{{ decrypt($account->name) }}</option>
+									@else
+										<option value="{{ $account->id }}">{{ decrypt($account->name) }}</option>
+									@endif
 								@endforeach
 							</select>
 						</div>

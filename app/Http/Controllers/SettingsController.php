@@ -45,6 +45,12 @@
             if ($request->input('dropbox_token') != null) {
                 $user->dropbox_token = encrypt($request->input('dropbox_token'));
             }
+
+            if ($request->input('donation_account') == 0) {
+                $user->donation_account = $request->input('');
+            } else {
+                $user->donation_account = $request->input('donation_account');
+            }
             $user->save();
 
             return redirect('/settings')->with('success', __('auth.edit_successfully'));

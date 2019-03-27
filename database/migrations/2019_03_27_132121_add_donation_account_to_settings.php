@@ -14,7 +14,7 @@
         public function up()
         {
             Schema::table('users', function (Blueprint $table) {
-                $table->text('donation_account')->default('');
+                $table->text('donation_account')->nullable();
             });
         }
 
