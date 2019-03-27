@@ -22,5 +22,6 @@
 
         'donation_account' => 'Donation account',
         'disable_donation' => 'Donations disabled',
+        'donation_link' => 'Your donation link:',
 
     ];

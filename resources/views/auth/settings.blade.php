@@ -35,6 +35,7 @@
 									@endif
 								@endforeach
 							</select>
+							{{__('account.donation_link')}} : <a href="{{env('APP_URL')}}/donation/{{decrypt($user->name)}}">{{env('APP_URL')}}/donation/{{decrypt($user->name)}}</a>
 						</div>
 						{{Form::hidden('_method', 'PUT')}}
 						{{Form::submit(__('auth.edit_settings'), ['class' => 'btn btn-primary'])}}
