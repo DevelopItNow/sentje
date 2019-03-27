@@ -30,6 +30,7 @@
         'notpaid' => 'Niet betaald',
 
         'paidmessage' => 'Het verzoek is betaald',
+        'paid_on' => 'Betaald op:'
 
         'delete_request' => 'Verwijder verzoek',
         'delete_confirm' => 'Weet je zeker dat je dit verzoekt wilt verwijderen?',
