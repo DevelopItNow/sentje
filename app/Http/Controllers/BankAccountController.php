@@ -30,7 +30,8 @@
          */
         public function index()
         {
-            return view('accounts.index', ['bankaccounts' => Auth::user()->bankaccounts()->orderBy('id', 'ASC')->paginate(10)]);
+            return view('accounts.index',
+                ['bankaccounts' => Auth::user()->bankaccounts()->orderBy('id', 'ASC')->paginate(10)]);
         }
 
         /**
@@ -189,12 +190,11 @@
                             'created_at' => date('d-m-Y - H:i:s', strtotime($account->created_at))
                         ));
                 }
-                $client->upload('accounts '.date("d-m-Y H i s").'.json', json_encode($listAccounts));
+                $client->upload('accounts ' . date("d-m-Y H i s") . '.json', json_encode($listAccounts));
 
                 // Redirect to account page
                 return redirect('account')->with('success', __('account.export_success'));
-            }
-            catch (BadRequest $exception) {
+            } catch (BadRequest $exception) {
                 return redirect('account')->with('error', __('account.export_failed'));
             }
         }

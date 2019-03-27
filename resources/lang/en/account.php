@@ -23,5 +23,9 @@
         'donation_account' => 'Donation account',
         'disable_donation' => 'Donations disabled',
         'donation_link' => 'Your donation link:',
+        'donation' => 'Donation',
+        'donation_succeeded' => 'Donation succeeded!',
+        'donation_received' => 'The user received the donation!',
+
 
     ];

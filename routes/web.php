@@ -18,6 +18,10 @@
     });
 
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/donation/', 'DonationController@index')->name('donation');
+    Route::get('/donation/{name}', 'DonationController@index')->name('donation');
+    Route::get('/donationsuccess/{id}', 'DonationController@success')->name('donate.success');
+    Route::post('/donation/', 'DonationController@donate')->name('donation.store');
     Route::get('lang/{locale}', 'LocalController@setLocale');
     Route::get('/settings', 'SettingsController@index')->name('settings');
     Route::get('/account/exportAccount', 'BankAccountController@exportAccount')->name('account.exportAccount');

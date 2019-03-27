@@ -23,5 +23,8 @@
         'donation_account' => 'Donatie account',
         'disable_donation' => 'Donaties uitgeschakeld',
         'donation_link' => 'Je donatie link:',
+        'donation' => 'Donatie',
+        'donation_succeeded' => 'Donatie gelukt!',
+        'donation_received' => 'De gebruiker heeft de donatie ontvangen!',
 
     ];
