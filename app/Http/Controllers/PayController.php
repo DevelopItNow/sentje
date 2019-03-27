@@ -16,22 +16,20 @@
         {
             if ($currency == 'euro') {
                 $currencyTo = 'EUR';
-            }
-            else {
+            } else {
                 $currencyTo = 'GBP';
             }
 
-            if(Config::get('app.locale') == 'nl'){
+            if (Config::get('app.locale') == 'nl') {
                 $locale = 'nl_NL';
-            }
-            else{
+            } else {
                 $locale = 'en_US';
             }
 
             if (strpos($amount, '.') === false) {
-                $amount = $amount .'.00';
+                $amount = $amount . '.00';
             }
-            if($request->input('note') != null) {
+            if ($request->input('note') != null) {
                 $userRequest = RequestsUsers::find($id);
                 $userRequest->note = $request->input('note');
                 $userRequest->save();
@@ -45,7 +43,6 @@
                 ],
                 'locale' => $locale,
                 'description' => 'Sentje Payment',
-//                'webhookUrl' => route('webhooks.mollie'),
                 'webhookUrl' => 'http://kevindev.nl/tempp.php',
                 'redirectUrl' => route('order.success', ['type' => $type, 'id' => $id]),
             ]);
@@ -62,27 +59,26 @@
 
         }
 
-        public function orderSuccess($id, $type)
+        public function orderSuccess($type, $id)
         {
             try {
                 $payment = Mollie::api()->payments()->get(Cookie::get('payment'));
-                    if ($payment->isPaid()) {
-                        if ($type == 'request') {
-                            $request = RequestsUsers::find($id);
-                            $request->paid = true;
-                            $request->save();
-                        }
-                        else if($type == 'planned_payment'){
+                if ($payment->isPaid()) {
+                    if ($type == 'request') {
+                        $request = RequestsUsers::find($id);
+                        $request->paid = true;
+                        $request->save();
+                    } else {
+                        if ($type == 'planned_payment') {
                             $planned_payment = PlannedPayment::find($id);
                             $planned_payment->paid = true;
                             $planned_payment->save();
                         }
                     }
-                    else {
-                        return redirect()->back()->with('error', __('error.payment_error'));
-                    }
+                } else {
+                    return redirect()->back()->with('error', __('error.payment_error'));
                 }
-            catch(Exception $e){
+            } catch (Exception $e) {
                 return redirect()->back()->with('error', __('error.payment_error'));
             }
             return view('order.success')->with(['type' => $type, 'id' => $id]);
