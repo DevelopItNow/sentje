@@ -27,6 +27,15 @@
                             {{Form::select('currency', ['euro' => 'Euro', 'pound' => __('calendar.pound')], ['class' => 'form-control', 'placeholder' => __('calendar.currency')])}}
                         </div>
                         <div class="form-group">
+                            {{Form::label('bank_account', __('request.select_account'))}}
+                            <br>
+                            <select name="bank_account" id="bank_account" class="form-control">
+                                @foreach ($bankaccounts as $account)
+                                    <option value="{{ $account->id }}">{{ decrypt($account->name) }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
                             {{Form::label('amount', __('calendar.amount'))}}
                             {{Form::number('amount', '', ['class' => 'form-control', 'placeholder' => __('calendar.amount')])}}
                         </div>

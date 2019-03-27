@@ -41,7 +41,8 @@ class PlannedPaymentController extends Controller
      */
     public function create()
     {
-        return view('plannedpayments.create');
+        $bankaccounts = Auth::user()->BankAccounts;
+        return view('plannedpayments.create')->with('bankaccounts', $bankaccounts);
     }
 
     /**
@@ -61,6 +62,7 @@ class PlannedPaymentController extends Controller
             'date' => 'required|date_format:d/m/Y|after_or_equal:today',
             'currency' => 'required|string',
             'amount' => 'required|numeric',
+            'bank_account' => 'required',
         ]);
 
         $receiver = User::where('email', $request->input('email'))->first();
@@ -73,6 +75,8 @@ class PlannedPaymentController extends Controller
                 $planned_payment->planned_date = Carbon::createFromFormat('d/m/Y', $request->input('date'));
                 $planned_payment->amount = $request->input('amount');
                 $planned_payment->description = encrypt($request->input('description'));
+                $planned_payment->paid = false;
+                $planned_payment->account_id = $request->input('bank_account');
                 $planned_payment->save();
                 return redirect('/account')->with('success', __('calendar.planned_payment_added'));
         }

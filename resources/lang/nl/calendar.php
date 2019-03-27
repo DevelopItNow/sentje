@@ -17,6 +17,6 @@ return [
     'pay_planned_payment' => 'Betalen',
     'pay_planned_payment_header' => 'Betaal Ingeplande Betaling',
     'sender_name' => 'Naam Zender',
-    'payment_not_available' => 'Deze ingeplande betaling is verlopen.',
+    'payment_not_available' => 'Deze ingeplande betaling is al betaald of verlopen.',
 
 ];

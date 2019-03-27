@@ -2,11 +2,10 @@
 
     namespace App\Http\Controllers;
 
+    use App\PlannedPayment;
     use App\RequestsUsers;
-    use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Config;
     use Illuminate\Support\Facades\Cookie;
-    use Illuminate\Support\Facades\Session;
     use Mollie\Laravel\Facades\Mollie;
     use Exception;
 
@@ -21,7 +20,12 @@
                 $currencyTo = 'GBP';
             }
 
-            $locale =  Config::get('app.locale');
+            if(Config::get('app.locale') == 'nl'){
+                $locale = 'nl_NL';
+            }
+            else{
+                $locale = 'en_US';
+            }
 
             if (strpos($amount, '.') === false) {
                 $amount = $amount .'.00';
@@ -54,24 +58,27 @@
 
         public function orderSuccess($id, $type)
         {
-            if ($type == 'request') {
-                try{
-                    $payment = Mollie::api()->payments()->get(Cookie::get('payment'));
-
-                    if($payment->isPaid()){
-                        $request = RequestsUsers::find($id);
-                        $request->paid = true;
-                        $request->save();
+            try {
+                $payment = Mollie::api()->payments()->get(Cookie::get('payment'));
+                    if ($payment->isPaid()) {
+                        if ($type == 'request') {
+                            $request = RequestsUsers::find($id);
+                            $request->paid = true;
+                            $request->save();
+                        }
+                        else if($type == 'planned_payment'){
+                            $planned_payment = PlannedPayment::find($id);
+                            $planned_payment->paid = true;
+                            $planned_payment->save();
+                        }
                     }
-                    else{
+                    else {
                         return redirect()->back()->with('error', __('error.payment_error'));
                     }
                 }
-                catch(Exception $e){
-                    return redirect()->back()->with('error', __('error.payment_error'));
-                }
+            catch(Exception $e){
+                return redirect()->back()->with('error', __('error.payment_error'));
             }
-            
             return view('order.success')->with(['type' => $type, 'id' => $id]);
         }
     }

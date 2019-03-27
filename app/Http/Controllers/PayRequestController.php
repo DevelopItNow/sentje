@@ -17,7 +17,8 @@
         {
             try {
                 $newId = decrypt($id);
-            } catch (DecryptException $e) {
+            }
+            catch (DecryptException $e) {
                 return redirect('/');
             }
 
@@ -40,6 +41,5 @@
             $requestInfo->image = $mainRequest->image;
 
             return view('requests.payrequest')->with('request', $requestInfo);
-
         }
     }

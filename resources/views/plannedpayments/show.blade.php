@@ -30,8 +30,8 @@
                             <p class="user-information font-weight-bold">{{__('calendar.description')}}</p>
                             {{decrypt($planned_payment->description)}}
                         </div>
-                        @if(date('Y-m-d') < $planned_payment->planned_date)
-                            {!!Form::open(['route' => ['pay', $planned_payment->amount, $planned_payment->currency], 'method' => 'POST'])!!}
+                        @if(date('Y-m-d') < $planned_payment->planned_date && $planned_payment->paid == 0)
+                            {!!Form::open(['route' => ['pay', $planned_payment->amount, $planned_payment->currency, 'planned_payment', $planned_payment->id], 'method' => 'POST'])!!}
                             {{Form::submit(__('calendar.pay_planned_payment'), ['class' => 'btn btn-success'])}}
                             {!! Form::close() !!}
                             @else
