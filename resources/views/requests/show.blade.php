@@ -29,6 +29,15 @@
 									<td><img src="/storage/added_image/{{$request->image}}"></td>
 								</tr>
 							@endif
+							@if($showDelete == 1)
+								<tr>
+									<td colspan="2">
+										<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#openModal">
+											{{__('request.delete_request')}}
+										</button>
+									</td>
+								</tr>
+							@endif
 						</table>
 						<h2>{{__('request.all_statuses')}}</h2>
 						<table>
@@ -36,9 +45,9 @@
 								<tr>
 									<td>{{$user['name']}}</td>
 									@if($user['paid'] != 0)
-									<td>{{__('request.paid')}}</td>
+										<td>{{__('request.paid')}}</td>
 									@else
-									<td>{{__('request.notpaid')}}</td>
+										<td>{{__('request.notpaid')}}</td>
 									@endif
 								</tr>
 							@endforeach
@@ -49,4 +58,6 @@
 		</div>
 	</div>
 
+	@include('inc.modal', ['title'=>__('request.delete_request'), 'body' => __('request.delete_confirm'),
+			'action' => 'RequestController@destroy', 'id' => $request->id, 'method' => 'DELETE', 'buttonText' => __('account.delete')])
 @endsection

@@ -200,17 +200,25 @@
 //            $requestUser = PaymentRequest::find($id)->RequestUsers();
             $requestUser = $request->RequestUsers;
             $userList = array();
+            $showDelete = true;
             foreach ($requestUser as $user) {
                 if ($user->user_id != null) {
                     $contactInfo = User::where('id', '=', $user->user_id)->first();
+
                     array_push($userList, ["name" => decrypt($contactInfo->name), "paid" => $user->paid]);
                 } else {
                     array_push($userList, ["name" => $user->email, "paid" => $user->paid]);
                 }
-
+                if ($user->paid == 1) {
+                    $showDelete = false;
+                }
             }
 
-            return view('requests.show')->with(['request' => $request, 'requestUser' => $userList]);
+            return view('requests.show')->with([
+                'request' => $request,
+                'requestUser' => $userList,
+                'showDelete' => $showDelete,
+            ]);
         }
 
         /**
@@ -244,6 +252,18 @@
          */
         public function destroy($id)
         {
-            //
+            $bankAccount = PaymentRequest::find($id);
+
+            if ($bankAccount == null) {
+                return redirect('/request')->with('error', __('error.unauthorized_page'));
+            }
+
+            if ($bankAccount->user_id != Auth::id()) {
+                return redirect('/request')->with('error', __('error.unauthorized_page'));
+            }
+
+            RequestsUsers::where('request_id', '=', $id)->delete();
+            $bankAccount->delete();
+            return redirect('/request')->with('success', __('request.request_deleted'));
         }
     }

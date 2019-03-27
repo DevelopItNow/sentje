@@ -31,4 +31,8 @@
 
         'paidmessage' => 'Het verzoek is betaald',
 
+        'delete_request' => 'Verwijder verzoek',
+        'delete_confirm' => 'Weet je zeker dat je dit verzoekt wilt verwijderen?',
+        'request_deleted' => 'Verzoek verwijderd',
+
     ];

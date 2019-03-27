@@ -31,4 +31,8 @@
 
         'paidmessage' => 'The request has been paid',
 
+        'delete_request' => 'Delete request',
+        'delete_confirm' => 'Are you sure you want to delete this request?',
+        'request_deleted' => 'Request deleted',
+
     ];
