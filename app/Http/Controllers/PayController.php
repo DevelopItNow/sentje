@@ -4,6 +4,7 @@
 
     use App\RequestsUsers;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Config;
     use Illuminate\Support\Facades\Cookie;
     use Illuminate\Support\Facades\Session;
     use Mollie\Laravel\Facades\Mollie;
@@ -15,21 +16,24 @@
         {
             if ($currency == 'euro') {
                 $currencyTo = 'EUR';
-            } else {
+            }
+            else {
                 $currencyTo = 'GBP';
             }
+
+            $locale =  Config::get('app.locale');
 
             if (strpos($amount, '.') === false) {
                 $amount = $amount .'.00';
             }
 
-            $payment = null;
             $payment = Mollie::api()->payments()->create([
                 'amount' => [
                     'currency' => $currencyTo,
                     'value' => $amount,
                     // You must send the correct number of decimals, thus we enforce the use of strings
                 ],
+                'locale' => $locale,
                 'description' => 'Sentje Payment',
 //                'webhookUrl' => route('webhooks.mollie'),
                 'webhookUrl' => 'http://kevindev.nl/tempp.php',
