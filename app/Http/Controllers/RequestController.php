@@ -110,7 +110,7 @@
                 $paymentRequest->image = $fileNameToStore;
 
             }
-            $paymentRequest->valuta = $request->input('currency');
+            $paymentRequest->currency = $request->input('currency');
             $paymentRequest->save();
 
             // Get a list with all the user ids

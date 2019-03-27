@@ -112,7 +112,7 @@
             }
 
             foreach($payment_requests as $payment_request){
-                if($payment_request->valuta == 'pound'){
+                if($payment_request->currency == 'pound'){
                     $payment_request->amount = $currency->convert('GBP', 'EUR', $payment_request->amount, 2);
                 }
             }

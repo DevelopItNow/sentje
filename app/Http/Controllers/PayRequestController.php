@@ -37,7 +37,7 @@
             $requestInfo->nameRequest = decrypt($mainRequest->name);
             $requestInfo->descRequest = decrypt($mainRequest->description);
             $requestInfo->amount = $mainRequest->amount;
-            $requestInfo->currency = $mainRequest->valuta;
+            $requestInfo->currency = $mainRequest->currency;
             $requestInfo->image = $mainRequest->image;
             $requestInfo->updated_at = $mainRequest->updated_at;
 
