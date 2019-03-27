@@ -39,6 +39,7 @@
             $requestInfo->amount = $mainRequest->amount;
             $requestInfo->currency = $mainRequest->valuta;
             $requestInfo->image = $mainRequest->image;
+            $requestInfo->updated_at = $mainRequest->updated_at;
 
             return view('requests.payrequest')->with('request', $requestInfo);
         }
