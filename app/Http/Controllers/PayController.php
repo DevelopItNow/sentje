@@ -4,6 +4,7 @@
 
     use App\RequestsUsers;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Cookie;
     use Illuminate\Support\Facades\Session;
     use Mollie\Laravel\Facades\Mollie;
     use Exception;
@@ -35,7 +36,7 @@
                 'redirectUrl' => route('order.success', ['type' => $type, 'id' => $id]),
             ]);
 
-            Session::put('payment', $payment->id);
+            Cookie::queue('payment', $payment->id, 5);
             $payment = Mollie::api()->payments()->get($payment->id);
 
             // redirect customer to Mollie checkout page
@@ -51,17 +52,15 @@
         {
             if ($type == 'request') {
                 try{
-                    if (Session::has('payment')) {
-                        $payment = Mollie::api()->payments()->get(Session::get('payment'));
+                    $payment = Mollie::api()->payments()->get(Cookie::get('payment'));
 
-                        if($payment->isPaid()){
-                            $request = RequestsUsers::find($id);
-                            $request->paid = true;
-                            $request->save();
-                        }
-                        else{
-                            return redirect()->back()->with('error', __('error.payment_error'));
-                        }
+                    if($payment->isPaid()){
+                        $request = RequestsUsers::find($id);
+                        $request->paid = true;
+                        $request->save();
+                    }
+                    else{
+                        return redirect()->back()->with('error', __('error.payment_error'));
                     }
                 }
                 catch(Exception $e){
