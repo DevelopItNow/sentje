@@ -26,6 +26,31 @@
 						{{Form::hidden('_method', 'PUT')}}
 						{{Form::submit(__('account.edit_account'), ['class' => 'btn btn-primary'])}}
 						{!! Form::close() !!}
+						<table class="table table-striped table-hover">
+							<thead>
+							<tr>
+								<th colspan="2">{{__('account.income')}}</th>
+							</tr>
+							</thead>
+							<tbody>
+						@foreach($planned_payments as $planned_payment)
+							<tr>
+								<td>{{decrypt($planned_payment->payment_name)}}</td>
+                                <td>+ €{{ $planned_payment->amount}}</td>
+							</tr>
+						@endforeach
+                        @foreach($payment_requests as $payment_request)
+                            @foreach($payment_request->RequestUsers as $request_user)
+                                @if($request_user->paid == 1)
+                                    <tr>
+                                        <td>{{decrypt($payment_request->name)}}</td>
+                                        <td>+ €{{ $payment_request->amount}}</td>
+                                    </tr>
+                                @endif
+                            @endforeach
+                        @endforeach
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>

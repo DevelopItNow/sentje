@@ -25,7 +25,7 @@
 							<tbody>
 							@foreach($bankaccounts as $account)
 								<tr>
-									<td><a href="/account/{{$account->id}}">{{decrypt($account->name)}}</a></td>
+									<td><a>{{decrypt($account->name)}}</a></td>
 									<td>{{decrypt($account->account_number)}}</td>
 									<td>{{date('d-m-Y', strtotime($account->created_at))}}</td>
 									<td>

@@ -14,5 +14,6 @@ return [
     */
 
     'account' => 'Create An Account!',
+    'welcome' => 'Use our service to create pay requests.',
 
 ];

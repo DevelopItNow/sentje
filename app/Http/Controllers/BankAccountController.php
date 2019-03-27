@@ -3,6 +3,7 @@
     namespace App\Http\Controllers;
 
     use App\BankAccount;
+    use danielme85\CConverter\Currency;
     use GuzzleHttp\Exception\ClientException;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
@@ -98,6 +99,21 @@
         {
 
             $account = BankAccount::find($id);
+            $planned_payments = $account->plannedPayments()->where('paid', 1)->get();
+            $payment_requests = $account->paymentRequests;
+            $currency = new Currency(null, null, false, null, true);
+
+            foreach($planned_payments as $planned_payment){
+                if($planned_payment->currency == 'pound'){
+                    $planned_payment->amount = $currency->convert('GBP', 'EUR', $planned_payment->amount, 2);
+                }
+            }
+
+            foreach($payment_requests as $payment_request){
+                if($payment_request->currency == 'pound'){
+                    $payment_request->amount = $currency->convert('GBP', 'EUR', $payment_request->amount, 2);
+                }
+            }
 
             if ($account == null) {
                 return redirect('/account')->with('error', __('error.unauthorized_page'));
@@ -107,7 +123,7 @@
                 return redirect('/account')->with('error', __('error.unauthorized_page'));
             }
 
-            return view('accounts.edit')->with('account', $account);
+            return view('accounts.edit')->with(['account' => $account, 'planned_payments' => $planned_payments, 'payment_requests' => $payment_requests]);
         }
 
         /**

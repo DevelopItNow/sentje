@@ -20,6 +20,11 @@
 
         public function paymentRequests()
         {
-            return $this->belongsToMany('App\PaymentRequests');
+            return $this->hasMany('App\PaymentRequest', 'account_id');
+        }
+
+        public function plannedPayments()
+        {
+            return $this->hasMany('App\PlannedPayment', 'account_id');
         }
     }

@@ -9,9 +9,10 @@
         'created_at' => 'Created at',
         'action' => 'Action',
         'delete_account' => 'Delete account',
-        'edit' => 'Edit',
+        'edit' => 'Show',
         'delete' => 'Delete',
         'delete_confirm' => 'Are you sure you want to delete this account?',
+        'income' => 'Income',
 
         'account_added' => 'Account added',
         'account_changed' => 'Account changed',

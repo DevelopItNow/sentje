@@ -8,10 +8,11 @@
         'created_at' => 'Aangemaakt op',
         'action' => 'Actie',
         'delete_account' => 'Verwijder account',
-        'edit' => 'Wijzig',
+        'edit' => 'Inzien',
         'edit_account' => 'Wijzig account',
         'delete' => 'Verwijder',
         'delete_confirm' => 'Weet je zeker dat je dit account wilt verwijderen?',
+        'income' => 'Inkomsten',
 
         'account_added' => 'Account is toegevoegd',
         'account_changed' => 'Account is gewijzigd',

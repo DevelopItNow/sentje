@@ -14,5 +14,6 @@ return [
     */
 
     'account' => 'Maak Een Account!',
+    'welcome' => 'Gebruik onze service om betaalverzoeken te sturen.',
 
 ];

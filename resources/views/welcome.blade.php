@@ -71,8 +71,8 @@
                 <div class="title m-b-md">
                     Tikkie Jij Bent Hem
                 </div>
-
-                <div class="links">
+                <h4>{{__('home.welcome')}}</h4>
+                <div class="links mt-4">
                     <a href="{{ route('register') }}"><button class="btn btn-success register">{{__('home.account')}}</button></a>
                 </div>
             </div>
