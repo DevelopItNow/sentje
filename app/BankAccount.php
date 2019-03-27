@@ -27,4 +27,9 @@
         {
             return $this->hasMany('App\PlannedPayment', 'account_id');
         }
+
+        public function donations()
+        {
+            return $this->hasMany('App\Donation', 'account_id');
+        }
     }

@@ -101,6 +101,7 @@
 
             $account = BankAccount::find($id);
             $planned_payments = $account->plannedPayments()->where('paid', 1)->get();
+            $donations = $account->donations()->where('paid', 1)->get();
             $payment_requests = $account->paymentRequests;
             $currency = new Currency(null, null, false, null, true);
 
@@ -116,6 +117,12 @@
                 }
             }
 
+            foreach($donations as $donation){
+                if($donation->currency == 'pound'){
+                    $donation->amount = $currency->convert('GBP', 'EUR', $donation->amount, 2);
+                }
+            }
+
             if ($account == null) {
                 return redirect('/account')->with('error', __('error.unauthorized_page'));
             }
@@ -124,7 +131,7 @@
                 return redirect('/account')->with('error', __('error.unauthorized_page'));
             }
 
-            return view('accounts.edit')->with(['account' => $account, 'planned_payments' => $planned_payments, 'payment_requests' => $payment_requests]);
+            return view('accounts.edit')->with(['account' => $account, 'planned_payments' => $planned_payments, 'payment_requests' => $payment_requests, 'donations' => $donations]);
         }
 
         /**

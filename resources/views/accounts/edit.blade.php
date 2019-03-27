@@ -49,6 +49,12 @@
                                 @endif
                             @endforeach
                         @endforeach
+                        @foreach($donations as $donation)
+                            <tr>
+                                <td>{{decrypt($donation->name)}}</td>
+                                <td>+ €{{ $donation->amount}}</td>
+                            </tr>
+                        @endforeach
 							</tbody>
 						</table>
 					</div>
