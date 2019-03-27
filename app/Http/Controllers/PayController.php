@@ -4,7 +4,9 @@
 
     use App\RequestsUsers;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Session;
     use Mollie\Laravel\Facades\Mollie;
+    use Exception;
 
     class PayController extends Controller
     {
@@ -30,31 +32,39 @@
                 'description' => 'Sentje Payment',
 //                'webhookUrl' => route('webhooks.mollie'),
                 'webhookUrl' => 'http://kevindev.nl/tempp.php',
-                'redirectUrl' => route('order.success', ['type' => $type, 'id' => $id, 'mollie_id' => $payment->id]),
+                'redirectUrl' => route('order.success', ['type' => $type, 'id' => $id]),
             ]);
 
+            Session::put('payment', $payment->id);
             $payment = Mollie::api()->payments()->get($payment->id);
 
             // redirect customer to Mollie checkout page
             return redirect($payment->getCheckoutUrl(), 303);
         }
 
-        public function webhook($id)
+        public function webHook($id)
         {
 
         }
 
-        public function orderSuccess($id, $type, $mollie_id)
+        public function orderSuccess($id, $type)
         {
             if ($type == 'request') {
-                $payment = Mollie::api()->payments()->get($mollie_id);
+                try{
+                    if (Session::has('payment')) {
+                        $payment = Mollie::api()->payments()->get(Session::get('payment'));
 
-                if($payment->isPaid()){
-                    $request = RequestsUsers::find($id);
-                    $request->paid = true;
-                    $request->save();
+                        if($payment->isPaid()){
+                            $request = RequestsUsers::find($id);
+                            $request->paid = true;
+                            $request->save();
+                        }
+                        else{
+                            return redirect()->back()->with('error', __('error.payment_error'));
+                        }
+                    }
                 }
-                else{
+                catch(Exception $e){
                     return redirect()->back()->with('error', __('error.payment_error'));
                 }
             }
