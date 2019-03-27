@@ -36,4 +36,7 @@
         'delete_confirm' => 'Are you sure you want to delete this request?',
         'request_deleted' => 'Request deleted',
 
+        'payment_received' => 'Your payment has been received, thank you for using this service.',
+        'payment_succeeded' => 'Payment Succeeded',
+
     ];

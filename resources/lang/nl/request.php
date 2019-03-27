@@ -36,4 +36,7 @@
         'delete_confirm' => 'Weet je zeker dat je dit verzoekt wilt verwijderen?',
         'request_deleted' => 'Verzoek verwijderd',
 
+        'payment_received' => 'Je betaling is ontvangen, bedankt voor het gebruiken van deze service.',
+        'payment_succeeded' => 'Betaling Geslaagd',
+
     ];

@@ -19,9 +19,9 @@
                         </div>
                         <div class="form-group">
                             <p class="user-information font-weight-bold">{{__('calendar.amount')}}</p>
-                            @if($planned_payment->currency = 'euro')
+                            @if($planned_payment->currency == 'euro')
                                 €
-                                @else
+                            @else
                                 £
                             @endif
                             {{$planned_payment->amount}}
