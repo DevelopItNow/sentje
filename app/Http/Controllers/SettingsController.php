@@ -21,7 +21,8 @@
         public function index()
         {
             $user = User::find(Auth::id());
-            return view('auth.settings')->with("user", $user);
+            $accounts = $user->BankAccounts;
+            return view('auth.settings')->with(["user" => $user, "accounts" => $accounts]);
         }
 
         /**

@@ -19,4 +19,8 @@
         'account_export' => 'Export accounts',
         'export_success' => 'Export successfully',
         'export_failed' => 'Export failed, did you use a valid token?',
+
+        'donation_account' => 'Donation account',
+        'disable_donation' => 'Donations disabled',
+
     ];

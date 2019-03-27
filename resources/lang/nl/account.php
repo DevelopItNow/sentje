@@ -20,4 +20,7 @@
         'export_success' => 'Exporteren gelukt',
         'export_failed' => 'Exporteren mislukt, heb je een valide token gebruikt?',
 
+        'donation_account' => 'Donatie account',
+        'disable_donation' => 'Donaties uitgeschakeld',
+
     ];

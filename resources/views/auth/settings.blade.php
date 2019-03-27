@@ -21,6 +21,17 @@
 								{{Form::text('dropbox_token', decrypt($user->dropbox_token), ['class' => 'form-control', 'placeholder' => 'Dropbox Token'])}}
 							@endif
 						</div>
+						<div class="form-group">
+							{{Form::label('donation_account', __('account.donation_account'))}}
+							<br>
+							<select name="donation_account" id="donation_account" class="form-control">
+								<option value="0" selected>{{ __('account.disable_donation') }}</option>
+
+								@foreach ($accounts as $account)
+									<option value="{{ $account->id }}">{{ decrypt($account->name) }}</option>
+								@endforeach
+							</select>
+						</div>
 						{{Form::hidden('_method', 'PUT')}}
 						{{Form::submit(__('auth.edit_settings'), ['class' => 'btn btn-primary'])}}
 						{!! Form::close() !!}
