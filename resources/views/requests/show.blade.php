@@ -21,7 +21,7 @@
 							</tr>
 							<tr>
 								<td>{{__('request.currency')}}</td>
-								<td>{{$request->valuta}}</td>
+								<td>{{$request->currency}}</td>
 							</tr>
 							@if($request->image != null)
 								<tr>
