@@ -32,7 +32,8 @@
 							@if($showDelete == 1)
 								<tr>
 									<td colspan="2">
-										<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#openModal">
+										<button type="button" class="btn btn-danger" data-toggle="modal"
+												data-target="#openModal">
 											{{__('request.delete_request')}}
 										</button>
 									</td>
@@ -49,7 +50,11 @@
 									@else
 										<td>{{__('request.notpaid')}}</td>
 									@endif
+									@if($user['note'] != null)
+										<td>{{__('request.note')}} : {{$user['note']}}</td>
+									@endif
 								</tr>
+
 							@endforeach
 						</table>
 					</div>
