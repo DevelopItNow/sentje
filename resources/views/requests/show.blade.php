@@ -17,16 +17,21 @@
 							</tr>
 							<tr>
 								<td>{{__('request.amount')}}</td>
-								<td>{{$request->amount}}</td>
-							</tr>
-							<tr>
-								<td>{{__('request.currency')}}</td>
-								<td>{{$request->currency}}</td>
+								<td>
+									@if($request->currency == 'euro')
+										€
+									@else
+										£
+									@endif
+									{{number_format($request->amount, 2)}}
+								</td>
 							</tr>
 							@if($request->image != null)
 								<tr>
 									<td>{{__('request.image')}}</td>
-									<td><img src="/storage/added_image/{{$request->image}}"></td>
+									<td>
+										<img src="/storage/added_image/{{$request->image}}" style="max-width: 100%">
+									</td>
 								</tr>
 							@endif
 							@if($showDelete == 1)
