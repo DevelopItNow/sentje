@@ -23,7 +23,7 @@
                                 <tbody>
                                 @foreach($groups as $group)
                                     <tr>
-                                        <td>{{$group->name}}</td>
+                                        <td>{{decrypt($group->name)}}</td>
                                         <td>
                                             <a href="/groups/{{$group->id}}/edit" class="settings" title="Settings"
                                                data-toggle="tooltip">{{__('group.edit')}}</a>

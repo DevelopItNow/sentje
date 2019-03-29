@@ -17,11 +17,11 @@
                         {!! Form::open(['action' => ['GroupController@update', $group->id], 'method' => 'POST']) !!}
                         <div class="form-group">
                             {{Form::label('name', __('account.name'))}}
-                            {{Form::text('name', $group->name, ['class' => 'form-control', 'placeholder' => __('account.name')])}}
+                            {{Form::text('name', decrypt($group->name), ['class' => 'form-control', 'placeholder' => __('account.name')])}}
                         </div>
                         <div class="form-group">
                             {{Form::label('description', __('group.description'))}}
-                            {{Form::textarea('description', $group->description, ['class' => 'form-control', 'placeholder' => __('group.description')])}}
+                            {{Form::textarea('description', decrypt($group->description), ['class' => 'form-control', 'placeholder' => __('group.description')])}}
                         </div>
                         {{Form::hidden('_method', 'PUT')}}
                         {{Form::submit(__('group.edit_group'), ['class' => 'btn btn-primary'])}}

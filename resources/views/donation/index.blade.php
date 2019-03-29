@@ -30,7 +30,7 @@
 								{{Form::select('currency', ['euro' => 'Euro', 'pound' => __('request.pound')], ['class' => 'form-control', 'placeholder' => __('request.currency')])}}
 							</div>
 							{{Form::hidden('id', $user->id)}}
-							{{Form::submit(__('account.donation'), ['class' => 'btn btn-primary'])}}
+							{{Form::submit(__('account.donate'), ['class' => 'btn btn-primary'])}}
 							{!! Form::close() !!}
 						@endif
 

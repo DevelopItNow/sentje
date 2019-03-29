@@ -55,8 +55,8 @@ class GroupController extends Controller
         ]);
 
         $group = new Group;
-        $group->name = $request->input('name');
-        $group->description = $request->input('description');
+        $group->name = encrypt($request->input('name'));
+        $group->description = encrypt($request->input('description'));
         $group->user_id = Auth::id();
         $group->save();
 
@@ -122,8 +122,8 @@ class GroupController extends Controller
             return redirect('/groups')->with('error', __('error.unauthorized_page'));
         }
 
-        $group->name = $request->input('name');
-        $group->description = $request->input('description');
+        $group->name = encrypt($request->input('name'));
+        $group->description = encrypt($request->input('description'));
         $group->save();
 
         return redirect('/groups')->with('success', __('group.group_changed'));

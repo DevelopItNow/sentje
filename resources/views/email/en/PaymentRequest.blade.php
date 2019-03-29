@@ -1,4 +1,4 @@
 <div>
 	Hey {{$name}},<br>
-	Can you pay for my request: http://sentje.test/payrequest/{{$id}}
+	Can you pay for my request: {{env('APP_URL')}}/payrequest/{{$id}}
 </div>

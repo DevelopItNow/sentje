@@ -46,7 +46,7 @@
 									<table class="user-information">
 										@foreach($groups as $group)
 											<tr>
-												<td>{{$group->name}}</td>
+												<td>{{decrypt($group->name)}}</td>
 												<td><label class="switch ">
 														<input name="group_{{$group->id}}" type="checkbox">
 														<span class="slider round"></span>
