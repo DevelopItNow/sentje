@@ -35,10 +35,11 @@
                 $userRequest->save();
             }
 
+
             $payment = Mollie::api()->payments()->create([
                 'amount' => [
                     'currency' => $currencyTo,
-                    'value' => $amount,
+                    'value' => number_format($amount, 2),
                     // You must send the correct number of decimals, thus we enforce the use of strings
                 ],
                 'locale' => $locale,

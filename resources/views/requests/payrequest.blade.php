@@ -15,7 +15,7 @@
 							@else
 								£
 							@endif
-							{{$request->amount}}
+							{{number_format($request->amount, 2)}}
 						</div>
 						<div class="form-group">
 							<p class="user-information font-weight-bold">{{__('request.description')}}</p>
@@ -24,8 +24,8 @@
 						<div class="form-group">
 							@if($request->image != null)
 								<tr>
-									<td>{{__('request.image')}}</td>
-									<td><img src="/storage/added_image/{{$request->image}}"></td>
+									<td class="font-weight-bold">{{__('request.image')}}</td>
+									<td><img src="/storage/added_image/{{$request->image}}" style="max-width: 100%"></td>
 								</tr>
 							@endif
 						</div>
