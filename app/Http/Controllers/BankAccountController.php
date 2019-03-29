@@ -105,20 +105,20 @@
             $payment_requests = $account->paymentRequests;
             $currency = new Currency(null, null, false, null, true);
 
-            foreach($planned_payments as $planned_payment){
-                if($planned_payment->currency == 'pound'){
+            foreach ($planned_payments as $planned_payment) {
+                if ($planned_payment->currency == 'pound') {
                     $planned_payment->amount = $currency->convert('GBP', 'EUR', $planned_payment->amount, 2);
                 }
             }
 
-            foreach($payment_requests as $payment_request){
-                if($payment_request->currency == 'pound'){
+            foreach ($payment_requests as $payment_request) {
+                if ($payment_request->currency == 'pound') {
                     $payment_request->amount = $currency->convert('GBP', 'EUR', $payment_request->amount, 2);
                 }
             }
 
-            foreach($donations as $donation){
-                if($donation->currency == 'pound'){
+            foreach ($donations as $donation) {
+                if ($donation->currency == 'pound') {
                     $donation->amount = $currency->convert('GBP', 'EUR', $donation->amount, 2);
                 }
             }
@@ -131,7 +131,12 @@
                 return redirect('/account')->with('error', __('error.unauthorized_page'));
             }
 
-            return view('accounts.edit')->with(['account' => $account, 'planned_payments' => $planned_payments, 'payment_requests' => $payment_requests, 'donations' => $donations]);
+            return view('accounts.edit')->with([
+                'account' => $account,
+                'planned_payments' => $planned_payments,
+                'payment_requests' => $payment_requests,
+                'donations' => $donations
+            ]);
         }
 
         /**
@@ -203,17 +208,85 @@
             $client = new Client(decrypt(Auth::user()->dropbox_token));
             try {
                 $accounts = Auth::user()->bankaccounts()->orderBy('id', 'ASC')->get();
-                $listAccounts = array();
 
+
+                $sendThisToDropbox = array();
                 foreach ($accounts as $account) {
+
+                    $allTheAccountInfo = array();
+                    $listAccounts = array();
+                    $listPlannedPayments = array();
+                    $listPaymentRequests = array();
+                    $listDonations = array();
+
+                    $planned_payments = $account->plannedPayments()->where('paid', 1)->get();
+                    $donations = $account->donations()->where('paid', 1)->get();
+                    $payment_requests = $account->paymentRequests;
+                    $currency = new Currency(null, null, false, null, true);
+
                     array_push($listAccounts,
                         array(
-                            'name' => decrypt($account->name),
-                            'number' => decrypt($account->account_number),
-                            'created_at' => date('d-m-Y - H:i:s', strtotime($account->created_at))
+                            __('export.name') => decrypt($account->name),
+                            __('export.number') => decrypt($account->account_number),
+                            __('export.created_at') => date('d-m-Y - H:i:s', strtotime($account->created_at))
                         ));
+
+                    foreach ($planned_payments as $planned_payment) {
+                        if ($planned_payment->currency == 'pound') {
+                            $planned_payment->amount = $currency->convert('GBP', 'EUR', $planned_payment->amount, 2);
+                        }
+                        array_push($listPlannedPayments,
+                            array(
+                                __('export.name') => decrypt($planned_payment->payment_name),
+                                __('export.amount') => number_format($planned_payment->amount, 2),
+                            ));
+                    }
+                    if (count($listPlannedPayments) > 0) {
+                        array_push($allTheAccountInfo, [__('export.planned_payments') => $listPlannedPayments]);
+                    }
+
+
+                    foreach ($payment_requests as $payment_request) {
+                        foreach ($payment_request->RequestUsers as $request_user) {
+                            if ($request_user->paid == 1) {
+                                if ($payment_request->currency == 'pound') {
+                                    $payment_request->amount = $currency->convert('GBP', 'EUR',
+                                        $payment_request->amount,
+                                        2);
+                                }
+                                array_push($listPaymentRequests,
+                                    array(
+                                        __('export.name') => decrypt($payment_request->name),
+                                        __('export.amount') => number_format($payment_request->amount, 2),
+                                    ));
+                            }
+                        }
+                    }
+                    if (count($listPaymentRequests) > 0) {
+                        array_push($allTheAccountInfo, [__('export.payment_requests') => $listPaymentRequests]);
+                    }
+
+
+                    foreach ($donations as $donation) {
+                        if ($donation->currency == 'pound') {
+                            $donation->amount = $currency->convert('GBP', 'EUR', $donation->amount, 2);
+                        }
+                        array_push($listDonations,
+                            array(
+                                __('export.name') => decrypt($donation->name),
+                                __('export.amount') => number_format($donation->amount, 2),
+                            ));
+
+                    }
+                    if (count($listDonations) > 0) {
+                        array_push($allTheAccountInfo, [__('export.donations') => $listDonations]);
+                    }
+                    array_push($sendThisToDropbox, [decrypt($account->name) => $allTheAccountInfo]);
                 }
-                $client->upload('accounts ' . date("d-m-Y H i s") . '.json', json_encode($listAccounts));
+
+
+                $client->upload(__('export.accounts') . ' ' . date("d-m-Y H i s") . '.json',
+                    json_encode($sendThisToDropbox));
 
                 // Redirect to account page
                 return redirect('account')->with('success', __('account.export_success'));
