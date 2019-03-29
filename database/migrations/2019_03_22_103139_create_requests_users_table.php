@@ -20,8 +20,8 @@
                 $table->string('email')->nullable();
                 $table->boolean('paid');
 
-                $table->foreign('user_id')->references('id')->on('users');
-                $table->foreign('request_id')->references('id')->on('payment_requests');
+                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+                $table->foreign('request_id')->references('id')->on('payment_requests')->onDelete('cascade');
 
 
             });
