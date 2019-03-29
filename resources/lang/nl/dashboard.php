@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'account' => 'Account Maken',
+    'account' => 'Rekening Maken',
     'request' => 'Verzoek Maken',
     'contact' => 'Contacten',
     'plan' => 'Betaling Inplannen',
