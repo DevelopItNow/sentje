@@ -24,7 +24,7 @@
                             @else
                                 £
                             @endif
-                            {{$planned_payment->amount}}
+                            {{number_format($planned_payment->amount, 2)}}
                         </div>
                         <div class="form-group">
                             <p class="user-information font-weight-bold">{{__('calendar.description')}}</p>
