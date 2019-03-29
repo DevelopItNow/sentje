@@ -6,10 +6,17 @@
     use App\User;
     use Illuminate\Contracts\Encryption\DecryptException;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Config;
     use stdClass;
 
     class PayRequestController extends Controller
     {
+        public function __construct()
+        {
+            setlocale(LC_ALL, Config::get('app.locale'));
+
+        }
+
         /**
          * @param $id
          * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View

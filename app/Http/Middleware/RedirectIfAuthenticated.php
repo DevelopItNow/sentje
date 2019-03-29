@@ -20,7 +20,6 @@ class RedirectIfAuthenticated
     {
         if (Auth::guard($guard)->check()) {
             return redirect('/home');
-            setlocale(LC_ALL, Config::get('app.locale'));
         }
 
         return $next($request);

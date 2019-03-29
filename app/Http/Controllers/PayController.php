@@ -35,6 +35,9 @@
                 $userRequest->save();
             }
 
+            echo number_format($amount, 2);
+            dd($amount);
+
 
             $payment = Mollie::api()->payments()->create([
                 'amount' => [
