@@ -52,8 +52,10 @@
 									<td>{{$user['name']}}</td>
 									@if($user['paid'] != 0)
 										<td>{{__('request.paid')}}</td>
+										<td>{{date_format($user['payDate'],"H:i d-m-Y")}}</td>
 									@else
 										<td>{{__('request.notpaid')}}</td>
+										<td></td>
 									@endif
 									@if($user['note'] != null)
 										<td>{{__('request.note')}} : {{$user['note']}}</td>

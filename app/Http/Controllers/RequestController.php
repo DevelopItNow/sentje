@@ -206,14 +206,15 @@
                     $contactInfo = User::where('id', '=', $user->user_id)->first();
 
                     array_push($userList,
-                        ["name" => decrypt($contactInfo->name), "paid" => $user->paid, "note" => $user->note]);
+                        ["name" => decrypt($contactInfo->name), "paid" => $user->paid, "note" => $user->note, "payDate" => $user->updated_at]);
                 } else {
-                    array_push($userList, ["name" => $user->email, "paid" => $user->paid, "note" => $user->note]);
+                    array_push($userList, ["name" => $user->email, "paid" => $user->paid, "note" => $user->note, "payDate" => $user->updated_at]);
                 }
                 if ($user->paid == 1) {
                     $showDelete = false;
                 }
             }
+
 
             return view('requests.show')->with([
                 'request' => $request,

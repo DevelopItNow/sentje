@@ -72,6 +72,7 @@
                     if ($type == 'request') {
                         $request = RequestsUsers::find($id);
                         $request->paid = true;
+                        $request->touch();
                         $request->save();
                     } else {
                         if ($type == 'planned_payment') {
