@@ -47,7 +47,7 @@
             }
 
             if ($request->input('donation_account') == 0) {
-                $user->donation_account = $request->input(null);
+                $user->donation_account = null;
             } else {
                 $user->donation_account = $request->input('donation_account');
             }
