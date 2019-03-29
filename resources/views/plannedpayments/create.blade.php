@@ -37,7 +37,7 @@
                         </div>
                         <div class="form-group">
                             {{Form::label('amount', __('calendar.amount'))}}
-                            {{Form::number('amount', '', ['class' => 'form-control', 'placeholder' => __('calendar.amount')])}}
+                            {{Form::number('amount', '', ['class' => 'form-control','step'=>'any', 'placeholder' => __('calendar.amount')])}}
                         </div>
                         <div class="form-group">
                             {{Form::label('description', __('group.description'))}}
