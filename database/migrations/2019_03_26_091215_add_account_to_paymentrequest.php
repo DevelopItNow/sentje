@@ -15,7 +15,7 @@
         {
             Schema::table('payment_requests', function (Blueprint $table) {
                 $table->integer('account_id')->unsigned();
-                $table->foreign('account_id')->references('id')->on('bank_accounts');
+                $table->foreign('account_id')->references('id')->on('bank_accounts')->onDelete('cascade');
 
             });
         }

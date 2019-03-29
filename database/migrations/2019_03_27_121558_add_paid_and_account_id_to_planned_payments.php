@@ -16,7 +16,7 @@ class AddPaidAndAccountIdToPlannedPayments extends Migration
         Schema::table('planned_payments', function (Blueprint $table) {
             $table->boolean('paid');
             $table->integer('account_id')->unsigned();
-            $table->foreign('account_id')->references('id')->on('bank_accounts');
+            $table->foreign('account_id')->references('id')->on('bank_accounts')->onDelete('cascade');
         });
     }
 
