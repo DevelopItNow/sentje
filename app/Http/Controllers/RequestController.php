@@ -120,7 +120,8 @@
                 // Set all the groups
                 if (substr($key, 0, 6) === "group_") {
                     $groupId = substr($key, 6);
-                    $group = Group::find($groupId)->first();
+                    $group = Group::find($groupId);
+
                     foreach ($group->users as $user) {
                         if (!in_array($user->id, $userIdList)) {
                             array_push($userIdList, $user->id);
