@@ -35,14 +35,15 @@
                 $userRequest->save();
             }
 
-            echo number_format($amount, 2);
-            dd($amount);
-
+            $tempAmount = (float)number_format((float)str_replace(",", ".", $amount), 2, ".", "");
+            $tempAmount = str_replace(',', '.', $tempAmount);
+            $tempAmount = number_format($tempAmount, 2);
+            $tempAmount = str_replace(',', '', $tempAmount);
 
             $payment = Mollie::api()->payments()->create([
                 'amount' => [
                     'currency' => $currencyTo,
-                    'value' => number_format($amount, 2),
+                    'value' => $tempAmount,
                     // You must send the correct number of decimals, thus we enforce the use of strings
                 ],
                 'locale' => $locale,
