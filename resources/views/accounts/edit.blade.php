@@ -33,28 +33,28 @@
 							</tr>
 							</thead>
 							<tbody>
-						@foreach($planned_payments as $planned_payment)
-							<tr>
-								<td>{{decrypt($planned_payment->payment_name)}}</td>
-                                <td>+ €{{ $planned_payment->amount}}</td>
-							</tr>
-						@endforeach
-                        @foreach($payment_requests as $payment_request)
-                            @foreach($payment_request->RequestUsers as $request_user)
-                                @if($request_user->paid == 1)
-                                    <tr>
-                                        <td>{{decrypt($payment_request->name)}}</td>
-                                        <td>+ €{{ $payment_request->amount}}</td>
-                                    </tr>
-                                @endif
-                            @endforeach
-                        @endforeach
-                        @foreach($donations as $donation)
-                            <tr>
-                                <td>{{decrypt($donation->name)}}</td>
-                                <td>+ €{{ $donation->amount}}</td>
-                            </tr>
-                        @endforeach
+							@foreach($planned_payments as $planned_payment)
+								<tr>
+									<td>{{decrypt($planned_payment->payment_name)}}</td>
+									<td>+ €{{ number_format($planned_payment->amount, 2) }}</td>
+								</tr>
+							@endforeach
+							@foreach($payment_requests as $payment_request)
+								@foreach($payment_request->RequestUsers as $request_user)
+									@if($request_user->paid == 1)
+										<tr>
+											<td>{{decrypt($payment_request->name)}}</td>
+											<td>+ €{{ number_format($payment_request->amount, 2) }}</td>
+										</tr>
+									@endif
+								@endforeach
+							@endforeach
+							@foreach($donations as $donation)
+								<tr>
+									<td>{{decrypt($donation->name)}}</td>
+									<td>+ €{{ number_format($donation->amount, 2) }}</td>
+								</tr>
+							@endforeach
 							</tbody>
 						</table>
 					</div>
