@@ -36,7 +36,7 @@
 							@foreach($planned_payments as $planned_payment)
 								<tr>
 									<td>{{decrypt($planned_payment->payment_name)}}</td>
-									<td>+ €{{ number_format($planned_payment->amount, 2) }}</td>
+									<td>+ €{{ number_format($planned_payment->amount, 2, localeconv()['decimal_point'], localeconv()['thousands_sep']) }}</td>
 								</tr>
 							@endforeach
 							@foreach($payment_requests as $payment_request)
@@ -44,7 +44,7 @@
 									@if($request_user->paid == 1)
 										<tr>
 											<td>{{decrypt($payment_request->name)}}</td>
-											<td>+ €{{ number_format($payment_request->amount, 2) }}</td>
+											<td>+ €{{ number_format($payment_request->amount, 2, localeconv()['decimal_point'], localeconv()['thousands_sep']) }}</td>
 										</tr>
 									@endif
 								@endforeach
@@ -52,7 +52,7 @@
 							@foreach($donations as $donation)
 								<tr>
 									<td>{{decrypt($donation->name)}}</td>
-									<td>+ €{{ number_format($donation->amount, 2) }}</td>
+									<td>+ €{{ number_format($donation->amount, 2, localeconv()['decimal_point'], localeconv()['thousands_sep']) }}</td>
 								</tr>
 							@endforeach
 							</tbody>

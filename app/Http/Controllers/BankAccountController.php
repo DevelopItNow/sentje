@@ -238,7 +238,7 @@
                         array_push($listPlannedPayments,
                             array(
                                 __('export.name') => decrypt($planned_payment->payment_name),
-                                __('export.amount') => number_format($planned_payment->amount, 2),
+                                __('export.amount') => number_format($planned_payment->amount, 2, localeconv()['decimal_point'], localeconv()['thousands_sep']),
                             ));
                     }
                     if (count($listPlannedPayments) > 0) {
@@ -257,7 +257,7 @@
                                 array_push($listPaymentRequests,
                                     array(
                                         __('export.name') => decrypt($payment_request->name),
-                                        __('export.amount') => number_format($payment_request->amount, 2),
+                                        __('export.amount') => number_format($payment_request->amount, 2, localeconv()['decimal_point'], localeconv()['thousands_sep']),
                                     ));
                             }
                         }
@@ -274,7 +274,7 @@
                         array_push($listDonations,
                             array(
                                 __('export.name') => decrypt($donation->name),
-                                __('export.amount') => number_format($donation->amount, 2),
+                                __('export.amount') => number_format($donation->amount, 2, localeconv()['decimal_point'], localeconv()['thousands_sep']),
                             ));
 
                     }

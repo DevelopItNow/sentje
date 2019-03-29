@@ -15,7 +15,7 @@
 							@else
 								£
 							@endif
-							{{number_format($request->amount, 2)}}
+							{{number_format($request->amount, 2, localeconv()['decimal_point'], localeconv()['thousands_sep'])}}
 						</div>
 						<div class="form-group">
 							<p class="user-information font-weight-bold">{{__('request.description')}}</p>

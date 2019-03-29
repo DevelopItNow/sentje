@@ -17,6 +17,7 @@ class Locale
     {
         if (\Session::has('language')) {
             \App::setLocale(\Session::get('language'));
+            setlocale(LC_ALL, Config::get('app.locale'));
         }
 
         return $next($request);
