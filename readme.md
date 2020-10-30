@@ -1,6 +1,6 @@
 # Sentje (Tikkie Clone)
 
-Sentje is an account balance and payment service. Which was made by us during an assessment.
+Sentje is an account balance and payment service. Which was made by us during our studies at Avans University of Applied Sciences.
 
 ## Features
 * Create accounts
@@ -13,6 +13,9 @@ Sentje is an account balance and payment service. Which was made by us during an
 * Added buttons for donations
 * Support for multiple currencies and languages
 * Encrypted data
+
+## Disclaimer
+This repository is a bit old, the coding style and best practices might be out of date.
 
 License
 ----
